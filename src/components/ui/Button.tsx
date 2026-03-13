@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-type ButtonVariant = 'primary' | 'secondary' | 'ghost';
+type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'white';
 type ButtonSize = 'sm' | 'md' | 'lg';
 
 interface ButtonProps {
@@ -22,6 +22,8 @@ const variantClasses: Record<ButtonVariant, string> = {
     'border-2 border-primary text-primary hover:bg-primary hover:text-white active:scale-[0.98]',
   ghost:
     'text-primary underline underline-offset-4 hover:text-accent',
+  white:
+    'bg-white text-primary hover:bg-neutral-100 active:scale-[0.98]',
 };
 
 const sizeClasses: Record<ButtonSize, string> = {

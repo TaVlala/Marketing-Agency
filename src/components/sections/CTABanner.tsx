@@ -39,8 +39,8 @@ export default function CTABanner({ settings }: CTABannerProps) {
             <div className="flex flex-col sm:flex-row gap-4 shrink-0">
               <Button
                 href="/contact"
+                variant="white"
                 size="lg"
-                className="bg-white text-primary hover:bg-neutral-100 border-0"
               >
                 Get in touch
               </Button>
