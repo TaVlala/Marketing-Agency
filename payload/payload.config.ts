@@ -1,13 +1,13 @@
 import { buildConfig } from 'payload';
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
-import { TeamMembers } from './collections/TeamMembers';
-import { Services } from './collections/Services';
-import { CaseStudies } from './collections/CaseStudies';
-import { Testimonials } from './collections/Testimonials';
-import { ProofStats } from './collections/ProofStats';
-import { SiteSettings } from './collections/SiteSettings';
-import { Media } from './collections/Media';
+import { TeamMembers } from './collections/TeamMembers.ts';
+import { Services } from './collections/Services.ts';
+import { CaseStudies } from './collections/CaseStudies.ts';
+import { Testimonials } from './collections/Testimonials.ts';
+import { ProofStats } from './collections/ProofStats.ts';
+import { SiteSettings } from './collections/SiteSettings.ts';
+import { Media } from './collections/Media.ts';
 
 export default buildConfig({
   // Server URL — Payload admin panel on Railway
