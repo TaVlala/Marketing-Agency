@@ -67,7 +67,7 @@ export default async function AboutPage() {
               },
             ].map((item, i) => (
               <ScrollReveal key={i} delay={i * 80}>
-                <div className="px-0 md:px-10 py-8 md:py-0 first:pl-0 last:pr-0">
+                <div className={`py-8 md:py-0 ${i === 0 ? 'md:pr-10' : i === 1 ? 'md:px-10' : 'md:pl-10'}`}>
                   <p className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-400 mb-3">
                     {item.label}
                   </p>
