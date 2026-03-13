@@ -3,42 +3,67 @@
  * These run at build time only — the static site never calls the CMS at runtime.
  */
 
+import type {
+  Service,
+  TeamMember,
+  CaseStudy,
+  Testimonial,
+  ProofStat,
+  SiteSettings,
+  PaginatedDocs,
+} from '@payload/payload-types';
+
 const PAYLOAD_URL = process.env.PAYLOAD_URL || 'http://localhost:3000';
 
-async function fetchPayload<T>(endpoint: string): Promise<T> {
+async function fetchCollection<T>(endpoint: string): Promise<PaginatedDocs<T>> {
   const res = await fetch(`${PAYLOAD_URL}/api/${endpoint}`, {
-    next: { revalidate: 0 }, // Always fetch fresh at build time
+    next: { revalidate: 0 },
   });
-
   if (!res.ok) {
-    throw new Error(`Payload fetch failed: ${endpoint} — ${res.status}`);
+    throw new Error(`Payload fetch failed: /api/${endpoint} — ${res.status}`);
   }
-
   return res.json();
 }
 
-// Collection fetchers — typed with Payload generated types in Phase 3
-
-export async function getServices() {
-  return fetchPayload('services?limit=100&sort=displayOrder');
+async function fetchGlobal<T>(slug: string): Promise<T> {
+  const res = await fetch(`${PAYLOAD_URL}/api/globals/${slug}`, {
+    next: { revalidate: 0 },
+  });
+  if (!res.ok) {
+    throw new Error(`Payload global fetch failed: ${slug} — ${res.status}`);
+  }
+  return res.json();
 }
 
-export async function getTeamMembers() {
-  return fetchPayload('team-members?limit=100&sort=displayOrder');
+export async function getServices(): Promise<Service[]> {
+  const data = await fetchCollection<Service>('services?limit=100&sort=displayOrder');
+  return data.docs;
 }
 
-export async function getCaseStudies() {
-  return fetchPayload('case-studies?where[status][equals]=published&limit=100');
+export async function getTeamMembers(): Promise<TeamMember[]> {
+  const data = await fetchCollection<TeamMember>('team-members?limit=100&sort=displayOrder');
+  return data.docs;
 }
 
-export async function getTestimonials() {
-  return fetchPayload('testimonials?where[active][equals]=true&limit=100');
+export async function getCaseStudies(): Promise<CaseStudy[]> {
+  const data = await fetchCollection<CaseStudy>(
+    'case-studies?where[status][equals]=published&limit=100'
+  );
+  return data.docs;
 }
 
-export async function getProofStats() {
-  return fetchPayload('proof-stats?limit=100&sort=displayOrder');
+export async function getTestimonials(): Promise<Testimonial[]> {
+  const data = await fetchCollection<Testimonial>(
+    'testimonials?where[active][equals]=true&limit=100'
+  );
+  return data.docs;
 }
 
-export async function getSiteSettings() {
-  return fetchPayload('globals/site-settings');
+export async function getProofStats(): Promise<ProofStat[]> {
+  const data = await fetchCollection<ProofStat>('proof-stats?limit=100&sort=displayOrder');
+  return data.docs;
+}
+
+export async function getSiteSettings(): Promise<SiteSettings> {
+  return fetchGlobal<SiteSettings>('site-settings');
 }

@@ -12,7 +12,6 @@
   "dependencies": {
     "@payloadcms/db-postgres": "^3.79.0",
     "@payloadcms/next": "^3.79.0",
-    "@payloadcms/plugin-cloud-storage": "^3.79.0",
     "@payloadcms/richtext-lexical": "^3.79.0",
     "graphql": "^16.13.1",
     "next": "15.4.11",
