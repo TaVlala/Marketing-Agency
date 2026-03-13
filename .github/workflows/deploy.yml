@@ -1,0 +1,96 @@
+# =============================================================================
+# deploy.yml — CI/CD workflow for IPA Marketing Agency static site
+#
+# Triggers:
+#   1. push to main       — automatic deploy on every merge/push to main
+#   2. workflow_dispatch  — manual trigger from GitHub Actions UI
+#   3. repository_dispatch (cms-update) — Payload CMS webhook fires this
+#      when content is published, triggering a rebuild + redeploy
+# =============================================================================
+
+name: Build & Deploy to Hostinger
+
+on:
+  # Trigger 1: Push to main branch
+  push:
+    branches:
+      - main
+
+  # Trigger 2: Manual trigger from GitHub Actions UI
+  workflow_dispatch:
+
+  # Trigger 3: Payload CMS webhook — fires when content is published/updated
+  repository_dispatch:
+    types:
+      - cms-update
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      # -----------------------------------------------------------------------
+      # 1. Check out the repository at the latest commit
+      # -----------------------------------------------------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # -----------------------------------------------------------------------
+      # 2. Set up Node.js 20 with npm cache for faster installs
+      # -----------------------------------------------------------------------
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # -----------------------------------------------------------------------
+      # 3. Install dependencies using the lockfile (clean, reproducible install)
+      # -----------------------------------------------------------------------
+      - name: Install dependencies
+        run: npm ci
+
+      # -----------------------------------------------------------------------
+      # 4. Build the Next.js static export
+      #    Output goes to ./out/ (configured via output: 'export' in next.config.ts)
+      #    All NEXT_PUBLIC_* vars are baked into the static bundle at build time
+      # -----------------------------------------------------------------------
+      - name: Build static site
+        run: npm run build
+        env:
+          # Payload CMS base URL — used at build time to fetch content
+          PAYLOAD_URL: ${{ secrets.PAYLOAD_URL }}
+          # Cloudinary cloud name — embedded in client bundle for image URLs
+          NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: ${{ secrets.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME }}
+          # Plausible Analytics domain
+          NEXT_PUBLIC_PLAUSIBLE_DOMAIN: ${{ secrets.NEXT_PUBLIC_PLAUSIBLE_DOMAIN }}
+          # Mailchimp embedded form endpoint (public, client-side)
+          NEXT_PUBLIC_MAILCHIMP_URL: ${{ secrets.NEXT_PUBLIC_MAILCHIMP_URL }}
+          # Formspree contact form endpoint (public, client-side)
+          NEXT_PUBLIC_FORMSPREE_ENDPOINT: ${{ secrets.NEXT_PUBLIC_FORMSPREE_ENDPOINT }}
+          # Canonical site URL for sitemap and OG meta tags
+          NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
+
+      # -----------------------------------------------------------------------
+      # 5. Deploy ./out/ to Hostinger via FTP
+      #    dangerous-clean-slate: false — never wipe existing files in production
+      #    before uploading; only uploads changed/new files
+      # -----------------------------------------------------------------------
+      - name: Deploy to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # Local directory produced by `next build` with output: 'export'
+          local-dir: ./out/
+          # Hostinger standard web root
+          server-dir: /public_html/
+          # Exclude version control and local tooling from the upload
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+          # Never wipe the production server before deploying
+          dangerous-clean-slate: false

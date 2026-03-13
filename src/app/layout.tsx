@@ -13,12 +13,30 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com'),
   title: {
     default: 'IPA Marketing Agency',
     template: '%s | IPA Marketing Agency',
   },
   description:
     'Expert IPA marketing strategy, agency management, campaign audits, and best practice training.',
+  openGraph: {
+    type: 'website',
+    siteName: 'IPA Marketing Agency',
+    title: 'IPA Marketing Agency',
+    description:
+      'Expert IPA marketing strategy, agency management, campaign audits, and best practice training.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'IPA Marketing Agency',
+    description:
+      'Expert IPA marketing strategy, agency management, campaign audits, and best practice training.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

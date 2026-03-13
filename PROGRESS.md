@@ -48,3 +48,51 @@
 ## What's Next
 
 - **Phase 4**: Home page — Hero, Services, Proof Strip, Featured Work, Testimonials, Subscribe, CTA sections
+
+## Phase 4 — Home Page ✅
+
+**Completed:**
+- Hero, ServicesSection, ProofStrip, FeaturedWork, TestimonialsSection, SubscribeSection, CTABanner
+- All sections typed against `payload-types.ts`, graceful fallbacks for offline/no-CMS builds
+- Mailchimp JSONP subscribe — no serverless function
+- Build verified clean
+
+## Phase 5 — Inner Pages ✅
+
+**Completed:**
+- `/about` — mission strip (3-col), team grid with photo placeholder, CTA banner
+- `/services` — numbered editorial list with What/Who/Deliverable per service
+- `/work` — WorkGrid client component with tag filter bar, outcome highlights, empty state
+- `/contact` — two-column layout, ContactForm (Formspree), service dropdown, success/error states
+- `/privacy` — UK GDPR policy (Formspree, Mailchimp, Plausible)
+- `sitemap.ts` — all 6 routes with `force-static` for static export compatibility
+- All 7 routes build clean, verified in browser
+
+## Phase 6 — Deploy Workflow ✅
+
+**Completed:**
+- `.github/workflows/deploy.yml` — three triggers: push to main, workflow_dispatch, repository_dispatch `cms-update` (Payload webhook)
+- Steps: checkout → Node 20 + npm cache → npm ci → next build (with all secrets as env vars) → FTP deploy to Hostinger `/public_html/`
+- `dangerous-clean-slate: false` — never wipes production before upload
+- `.env.example` updated with `NEXT_PUBLIC_SITE_URL` and GitHub Actions secrets section
+
+**GitHub Secrets required (Settings → Secrets → Actions):**
+- `PAYLOAD_URL` — Railway Payload CMS URL
+- `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`, `NEXT_PUBLIC_PLAUSIBLE_DOMAIN`, `NEXT_PUBLIC_MAILCHIMP_URL`, `NEXT_PUBLIC_FORMSPREE_ENDPOINT`, `NEXT_PUBLIC_SITE_URL`
+- `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD` — Hostinger FTP credentials
+
+**Payload webhook setup (after Railway deploy):**
+- In Railway Payload admin → Settings → Webhooks → Add `https://api.github.com/repos/OWNER/REPO/dispatches`
+- Method: POST, Header: `Authorization: Bearer YOUR_GITHUB_PAT`, Body: `{"event_type":"cms-update"}`
+
+## Phase 7 — SEO Polish ✅
+
+**Completed:**
+- `robots.ts` — static robots.txt pointing to sitemap via `NEXT_PUBLIC_SITE_URL`
+- `layout.tsx` metadata enhanced: `metadataBase`, `openGraph` (type, siteName, title, description), `twitter` card, `robots` (index + follow)
+- `sitemap.ts` already used `NEXT_PUBLIC_SITE_URL` — no change needed
+- Build verified: 11 static routes including `/robots.txt` and `/sitemap.xml`
+
+## What's Next
+
+- **Phase 8**: Handover — launch checklist, README, final env var verification
