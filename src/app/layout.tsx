@@ -13,7 +13,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com'),
+  metadataBase: new URL((process.env.NEXT_PUBLIC_SITE_URL ?? '').startsWith('http') ? process.env.NEXT_PUBLIC_SITE_URL! : 'https://example.com'),
   title: {
     default: 'IPA Marketing Agency',
     template: '%s | IPA Marketing Agency',
