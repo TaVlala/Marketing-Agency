@@ -7,7 +7,12 @@ export const Testimonials: CollectionConfig = {
     defaultColumns: ['authorName', 'organization', 'active'],
     description: 'Short client quotes shown on the home page. Toggle Active to show/hide.',
   },
-  access: { read: () => true },
+  access: {
+    read: () => true,
+    create: ({ req: { user } }) => Boolean(user),
+    update: ({ req: { user } }) => Boolean(user),
+    delete: ({ req: { user } }) => Boolean(user),
+  },
   fields: [
     {
       name: 'quote',

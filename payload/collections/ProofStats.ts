@@ -7,7 +7,12 @@ export const ProofStats: CollectionConfig = {
     defaultColumns: ['label', 'value', 'displayOrder'],
     description: 'Stat callouts shown in the social proof strip (e.g. "10+ years in IPA").',
   },
-  access: { read: () => true },
+  access: {
+    read: () => true,
+    create: ({ req: { user } }) => Boolean(user),
+    update: ({ req: { user } }) => Boolean(user),
+    delete: ({ req: { user } }) => Boolean(user),
+  },
   fields: [
     {
       name: 'label',

@@ -6,7 +6,10 @@ export const SiteSettings: GlobalConfig = {
   admin: {
     description: 'Global site content: firm name, hero copy, contact details, and social links.',
   },
-  access: { read: () => true },
+  access: {
+    read: () => true,
+    update: ({ req: { user } }) => Boolean(user),
+  },
   fields: [
     {
       name: 'firmName',

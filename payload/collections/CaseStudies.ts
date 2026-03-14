@@ -7,7 +7,12 @@ export const CaseStudies: CollectionConfig = {
     defaultColumns: ['title', 'client', 'status', 'tags'],
     description: 'Work / Results page entries. Set status to Published to make them visible.',
   },
-  access: { read: () => true },
+  access: {
+    read: () => true,
+    create: ({ req: { user } }) => Boolean(user),
+    update: ({ req: { user } }) => Boolean(user),
+    delete: ({ req: { user } }) => Boolean(user),
+  },
   fields: [
     {
       name: 'title',

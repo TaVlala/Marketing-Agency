@@ -7,7 +7,12 @@ export const TeamMembers: CollectionConfig = {
     defaultColumns: ['name', 'role', 'displayOrder'],
     description: 'Team member profiles shown on the About page.',
   },
-  access: { read: () => true },
+  access: {
+    read: () => true,
+    create: ({ req: { user } }) => Boolean(user),
+    update: ({ req: { user } }) => Boolean(user),
+    delete: ({ req: { user } }) => Boolean(user),
+  },
   fields: [
     {
       name: 'name',

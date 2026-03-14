@@ -5,7 +5,12 @@ export const Media: CollectionConfig = {
   admin: {
     description: 'Images and files. Uploads are stored on Cloudinary (configured via Railway env vars).',
   },
-  access: { read: () => true },
+  access: {
+    read: () => true,
+    create: ({ req: { user } }) => Boolean(user),
+    update: ({ req: { user } }) => Boolean(user),
+    delete: ({ req: { user } }) => Boolean(user),
+  },
   upload: {
     // Cloudinary handles resizing — no local resize needed
     imageSizes: [],

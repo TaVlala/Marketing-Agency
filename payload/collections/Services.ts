@@ -7,7 +7,12 @@ export const Services: CollectionConfig = {
     defaultColumns: ['title', 'displayOrder'],
     description: 'The 4 service cards shown on the home page.',
   },
-  access: { read: () => true },
+  access: {
+    read: () => true,
+    create: ({ req: { user } }) => Boolean(user),
+    update: ({ req: { user } }) => Boolean(user),
+    delete: ({ req: { user } }) => Boolean(user),
+  },
   fields: [
     {
       name: 'title',
