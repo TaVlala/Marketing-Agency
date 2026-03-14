@@ -1,1 +1,23 @@
-{ "type": "module" }
+{
+  "name": "ipa-payload-cms",
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "payload build",
+    "start": "payload serve",
+    "seed": "npx tsx seed.ts"
+  },
+  "dependencies": {
+    "@payloadcms/db-postgres": "^3.79.0",
+    "@payloadcms/richtext-lexical": "^3.79.0",
+    "graphql": "^16.13.1",
+    "payload": "^3.79.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "typescript": "^5.8.3"
+  }
+}
