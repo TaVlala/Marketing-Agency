@@ -49,7 +49,12 @@ const fallbackStats: ProofStat[] = [
  */
 async function safeFetch<T>(fn: () => Promise<T>, fallback: T): Promise<T> {
   try {
-    return await fn();
+    const result = await fn();
+    // Use fallback when CMS returns empty array but we have hardcoded fallback content
+    if (Array.isArray(result) && result.length === 0 && Array.isArray(fallback) && (fallback as unknown[]).length > 0) {
+      return fallback;
+    }
+    return result;
   } catch {
     return fallback;
   }
