@@ -3,6 +3,7 @@ import ServicesSection from '@/components/sections/ServicesSection';
 import ProofStrip from '@/components/sections/ProofStrip';
 import FeaturedWork from '@/components/sections/FeaturedWork';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
+import OfferingsSection from '@/components/sections/OfferingsSection';
 import SubscribeSection from '@/components/sections/SubscribeSection';
 import CTABanner from '@/components/sections/CTABanner';
 import {
@@ -72,6 +73,7 @@ export default async function HomePage() {
       {testimonials.length > 0 && (
         <TestimonialsSection testimonials={testimonials} />
       )}
+      <OfferingsSection />
       <SubscribeSection />
       <CTABanner settings={settings} />
     </>
