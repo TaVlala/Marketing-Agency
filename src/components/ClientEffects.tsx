@@ -16,7 +16,13 @@ export default function ClientEffects() {
       },
       { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
     );
-    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    const revealEls = document.querySelectorAll('.reveal');
+    revealEls.forEach((el) => io.observe(el));
+
+    // Fallback: force reveal all elements after 1.5s in case IntersectionObserver misses them
+    const fallback = setTimeout(() => {
+      revealEls.forEach((el) => el.classList.add('in'));
+    }, 1500);
 
     // Stat counter animation
     const statIo = new IntersectionObserver(
@@ -60,6 +66,7 @@ export default function ClientEffects() {
       io.disconnect();
       statIo.disconnect();
       if (decoNum) window.removeEventListener('scroll', onParallax);
+      clearTimeout(fallback);
     };
   }, []);
 
