@@ -22,13 +22,22 @@ export default function ClientEffects() {
     if (window.location.hash) {
       revealEls.forEach((el) => el.classList.add('in'));
     } else {
-      revealEls.forEach((el) => io.observe(el));
+      revealEls.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        // Already visible in viewport → reveal immediately, no animation wait
+        if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
+          el.classList.add('in');
+        } else {
+          // Below the fold → animate in on scroll
+          io.observe(el);
+        }
+      });
     }
 
-    // Fallback: force reveal all after 800ms in case IntersectionObserver misses any
+    // Fallback: catch anything the observer misses
     const fallback = setTimeout(() => {
       revealEls.forEach((el) => el.classList.add('in'));
-    }, 800);
+    }, 300);
 
     // Stat counter animation
     const statIo = new IntersectionObserver(

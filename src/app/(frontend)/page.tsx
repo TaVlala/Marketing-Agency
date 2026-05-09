@@ -77,10 +77,6 @@ export default function HomePage() {
               <div className="section__num"><span className="bar"></span>02 — Capabilities</div>
               <h2 className="section__title"><span className="light">What</span> <em>we offer</em>.</h2>
             </div>
-            <div className="section__head-meta">
-              Six pillars
-              <strong>One senior partner.</strong>
-            </div>
           </div>
 
           <div className="services__grid">
@@ -91,12 +87,12 @@ export default function HomePage() {
             </div>
             <div className="service reveal" style={{ '--rd': '100ms' } as React.CSSProperties}>
               <div className="service__num">02<small>Narrative</small></div>
-              <h3 className="service__title">Investment Narrative<br /><em>&amp; Positioning</em></h3>
+              <h3 className="service__title">Narrative<br /><em>&amp; Positioning</em></h3>
               <p className="service__obj">Transform insights into a clear, investor-centric narrative that positions your destination competitively in the global investment landscape.</p>
             </div>
             <div className="service reveal" style={{ '--rd': '200ms' } as React.CSSProperties}>
               <div className="service__num">03<small>Strategy</small></div>
-              <h3 className="service__title">Investment Communication<br /><em>Strategy</em></h3>
+              <h3 className="service__title">Communication<br /><em>Strategy</em></h3>
               <p className="service__obj">Design a structured system to attract, engage, and convert investors using the narrative and positioning defined earlier.</p>
             </div>
             <div className="service reveal">

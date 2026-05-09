@@ -56,7 +56,7 @@ export default function ContactForm() {
 
       <div className="form__newsletter reveal">
         <div>
-          <h3>The Quarterly.</h3>
+          <h3>Sign up for quarterly newsletter.</h3>
           <p>— Four notes a year. No noise.</p>
         </div>
         <form

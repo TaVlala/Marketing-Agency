@@ -267,6 +267,15 @@ button { font: inherit; cursor: pointer; }
   display: inline-block;
 }
 .footer__list a:hover { color: var(--gold-soft); transform: translateX(4px); }
+.footer__social {
+  display: flex; gap: 16px; margin-top: 24px;
+}
+.footer__social a {
+  color: rgba(245,240,225,0.45);
+  transition: color 200ms ease, transform 200ms ease;
+  display: flex; align-items: center;
+}
+.footer__social a:hover { color: var(--gold-soft); transform: translateY(-2px); }
 .footer__bot {
   margin-top: 36px;
   display: grid;
@@ -726,6 +735,9 @@ button { font: inherit; cursor: pointer; }
   padding: 56px 32px 48px 32px;
   border-right: 1px solid rgba(245,240,225,0.18);
   border-bottom: 1px solid rgba(245,240,225,0.18);
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  min-height: 420px;
   position: relative;
   transition: background 320ms ease;
 }
@@ -753,6 +765,8 @@ button { font: inherit; cursor: pointer; }
   padding-bottom: 24px;
   border-bottom: 1px solid rgba(245,240,225,0.18);
   font-variation-settings: "opsz" 72;
+  min-height: 95px;
+  display: flex; flex-direction: column; justify-content: flex-end;
 }
 .service__title em { font-style: italic; color: var(--gold-soft); }
 .service__obj {
