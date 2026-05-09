@@ -35,10 +35,6 @@ export default function HeroSection() {
         <div className="hero__deco-num">26</div>
       </div>
 
-      <div className="hero__masthead reveal">
-        <div className="left"><span className="live">Now Booking</span> &nbsp;·&nbsp; Q3 — Q4 2026</div>
-        <div className="right">Boutique &nbsp;·&nbsp; Senior &nbsp;·&nbsp; Always</div>
-      </div>
 
       <div className="hero__inner">
         <div className="hero__title-block reveal" style={{ '--rd': '120ms' } as React.CSSProperties}>

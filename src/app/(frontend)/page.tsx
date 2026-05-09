@@ -79,58 +79,78 @@ export default function HomePage() {
               <h2 className="section__title"><span className="light">What</span> <em>we offer</em>.</h2>
             </div>
             <div className="section__head-meta">
-              Four capabilities
+              Six pillars
               <strong>One senior partner.</strong>
             </div>
           </div>
 
           <div className="services__grid">
             <div className="service reveal">
-              <div className="service__num">01<small>Brand</small></div>
-              <h3 className="service__title">Brand <em>+</em> Positioning</h3>
+              <div className="service__num">01<small>Audit</small></div>
+              <h3 className="service__title">Investment Potential<br /><em>Audit</em></h3>
+              <p className="service__obj">Develop a clear, evidence-based understanding of your destination's investment potential, market position, and current visibility.</p>
               <ul className="service__list">
-                <li>Brand identity exercises</li>
-                <li>Brand audit &amp; benchmark</li>
-                <li>Investment narrative &amp; country story</li>
-                <li>Sector value proposition design</li>
-                <li>Brand platform &amp; guidelines</li>
-                <li>Visual identity systems</li>
+                <li>Investment landscape &amp; context</li>
+                <li>Competitive positioning analysis</li>
+                <li>Investment Readiness Assessment</li>
+                <li>Target investor mapping</li>
+                <li>Visibility &amp; communication gaps</li>
               </ul>
             </div>
             <div className="service reveal" style={{ '--rd': '100ms' } as React.CSSProperties}>
-              <div className="service__num">02<small>Strategy</small></div>
-              <h3 className="service__title"><em>FDI</em> Marketing Strategy</h3>
+              <div className="service__num">02<small>Narrative</small></div>
+              <h3 className="service__title">Investment Narrative<br /><em>&amp; Positioning</em></h3>
+              <p className="service__obj">Transform insights into a clear, investor-centric narrative that positions your destination competitively in the global investment landscape.</p>
               <ul className="service__list">
-                <li>Sector &amp; target market analysis</li>
-                <li>Competitive positioning</li>
-                <li>FDI marketing strategy</li>
-                <li>Action plan &amp; roadmap</li>
-                <li>KPI &amp; measurement framework</li>
-                <li>Board reporting structure</li>
+                <li>Investment Vision &amp; Story</li>
+                <li>Investment Logic Model</li>
+                <li>Priority Sectors &amp; Investor Profiles</li>
+                <li>Investment Value Proposition Canvas</li>
+                <li>Tagline / Investment Brand Promise</li>
               </ul>
             </div>
             <div className="service reveal" style={{ '--rd': '200ms' } as React.CSSProperties}>
-              <div className="service__num">03<small>Execution</small></div>
-              <h3 className="service__title">Campaigns <em>that</em> Land</h3>
+              <div className="service__num">03<small>Strategy</small></div>
+              <h3 className="service__title">Investment Communication<br /><em>Strategy</em></h3>
+              <p className="service__obj">Design a structured system to attract, engage, and convert investors using the narrative and positioning defined earlier.</p>
               <ul className="service__list">
-                <li>LinkedIn content engine</li>
-                <li>SEO &amp; website optimisation</li>
-                <li>Paid campaigns (LinkedIn + Google)</li>
-                <li>Lead-generation landing pages</li>
-                <li>Email marketing &amp; newsletters</li>
-                <li>Campaign management &amp; reporting</li>
+                <li>Investment Deal Flow Engine</li>
+                <li>Channel &amp; campaign strategy</li>
+                <li>Messaging architecture</li>
+                <li>Investor journey framework</li>
               </ul>
             </div>
-            <div className="service reveal" style={{ '--rd': '300ms' } as React.CSSProperties}>
-              <div className="service__num">04<small>Access</small></div>
-              <h3 className="service__title">Senior <em>Counsel</em></h3>
+            <div className="service reveal">
+              <div className="service__num">04<small>Blueprints</small></div>
+              <h3 className="service__title">Execution<br /><em>Blueprints</em></h3>
+              <p className="service__obj">Provide clear, actionable instructions for implementation partners and internal teams.</p>
               <ul className="service__list">
-                <li>Media liaison (Bloomberg, Reuters, fDi…)</li>
-                <li>Sponsored content management</li>
-                <li>Investor targeting &amp; outreach</li>
-                <li>Trade fair &amp; event strategy</li>
-                <li>Thought leadership placement</li>
-                <li>Board &amp; CEO advisory</li>
+                <li>Website &amp; digital platforms briefs</li>
+                <li>Design &amp; identity briefs</li>
+                <li>Media &amp; PR briefs</li>
+                <li>Conferences &amp; investor outreach briefs</li>
+              </ul>
+            </div>
+            <div className="service reveal" style={{ '--rd': '100ms' } as React.CSSProperties}>
+              <div className="service__num">05<small>Execution</small></div>
+              <h3 className="service__title">Guided<br /><em>Execution</em></h3>
+              <p className="service__obj">Support implementation and ensure the strategy translates into measurable investor engagement.</p>
+              <ul className="service__list">
+                <li>Vendor supervision</li>
+                <li>Campaign optimisation</li>
+                <li>Investor engagement refinement</li>
+                <li>Deal flow monitoring</li>
+              </ul>
+            </div>
+            <div className="service reveal" style={{ '--rd': '200ms' } as React.CSSProperties}>
+              <div className="service__num">06<small>Partners</small></div>
+              <h3 className="service__title">Access to Execution<br /><em>Partners</em></h3>
+              <p className="service__obj">We connect you with global media platforms, design studios, and digital agencies aligned with your strategy from day one.</p>
+              <ul className="service__list">
+                <li>Global media platforms</li>
+                <li>Design &amp; branding studios</li>
+                <li>Digital &amp; campaign agencies</li>
+                <li>Investor-facing content specialists</li>
               </ul>
             </div>
           </div>
@@ -151,30 +171,66 @@ export default function HomePage() {
             <div className="step reveal">
               <div className="step__node"></div>
               <div className="step__num">Phase 01</div>
-              <h4 className="step__title"><em>Discover</em></h4>
-              <div className="step__when">Weeks 1 — 2</div>
-              <p className="step__body">Listening sessions, board context, brief diagnosis. We agree the problem before we propose the work.</p>
+              <h4 className="step__title"><em>Onboarding</em></h4>
+              <ul className="step__list">
+                <li>Kick-off call &amp; briefing</li>
+                <li>Access to existing materials</li>
+                <li>Priorities &amp; quick wins agreed</li>
+              </ul>
             </div>
             <div className="step reveal" style={{ '--rd': '100ms' } as React.CSSProperties}>
               <div className="step__node"></div>
               <div className="step__num">Phase 02</div>
               <h4 className="step__title">Diagnose</h4>
-              <div className="step__when">Weeks 3 — 6</div>
-              <p className="step__body">Capability, campaign, and spend audit. A written diagnostic and costed plan — yours to keep.</p>
+              <ul className="step__list">
+                <li>Desk research (economy, sectors, competitors)</li>
+                <li>Stakeholder interviews (IPA, policymakers)</li>
+                <li>Investor insights (existing &amp; target)</li>
+                <li>Marketing &amp; visibility audit</li>
+              </ul>
             </div>
             <div className="step reveal" style={{ '--rd': '200ms' } as React.CSSProperties}>
               <div className="step__node"></div>
               <div className="step__num">Phase 03</div>
-              <h4 className="step__title"><em>Build</em></h4>
-              <div className="step__when">Months 2 — 4</div>
-              <p className="step__body">Positioning, brand system, and the first campaign — built, launched, and handed over.</p>
+              <h4 className="step__title"><em>Define</em></h4>
+              <ul className="step__list">
+                <li>Strategic workshops (vision, sectors, targeting)</li>
+                <li>Investment story &amp; positioning development</li>
+                <li>Investment Logic Model (Why / How / What)</li>
+                <li>Value Proposition Canvas (by investor profiles)</li>
+              </ul>
             </div>
             <div className="step reveal" style={{ '--rd': '300ms' } as React.CSSProperties}>
               <div className="step__node"></div>
               <div className="step__num">Phase 04</div>
-              <h4 className="step__title">Always-On</h4>
-              <div className="step__when">Month 5 +</div>
-              <p className="step__body">Optional retained partnership. Monthly cadence, quarterly board reporting, ongoing optimisation.</p>
+              <h4 className="step__title">Activate</h4>
+              <ul className="step__list">
+                <li>Investor journey mapping</li>
+                <li>Channel strategy (digital, media, events)</li>
+                <li>Messaging architecture</li>
+              </ul>
+            </div>
+            <div className="step reveal" style={{ '--rd': '400ms' } as React.CSSProperties}>
+              <div className="step__node"></div>
+              <div className="step__num">Phase 05</div>
+              <h4 className="step__title"><em>Implement</em></h4>
+              <ul className="step__list">
+                <li>Website &amp; digital platform briefs</li>
+                <li>Design &amp; identity briefs</li>
+                <li>Media &amp; outreach briefs</li>
+                <li>Conference &amp; activation guidelines</li>
+              </ul>
+            </div>
+            <div className="step reveal" style={{ '--rd': '500ms' } as React.CSSProperties}>
+              <div className="step__node"></div>
+              <div className="step__num">Phase 06</div>
+              <h4 className="step__title">Advisory</h4>
+              <ul className="step__list">
+                <li>Vendor alignment &amp; supervision</li>
+                <li>Campaign optimisation</li>
+                <li>Investor engagement refinement</li>
+                <li>Deal flow monitoring</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -185,12 +241,7 @@ export default function HomePage() {
         <div className="section__inner">
           <div className="section__head reveal">
             <div>
-              <div className="section__num"><span className="bar"></span>05 — Get in touch</div>
               <h2 className="section__title"><span className="light">Let&apos;s</span> <em>talk</em>.</h2>
-            </div>
-            <div className="section__head-meta">
-              Discovery call
-              <strong>No commitment.</strong>
             </div>
           </div>
 

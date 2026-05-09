@@ -24,9 +24,7 @@ export default function ContactForm() {
         <p className="contact__lede">
           If your agency is <strong>ready</strong> to raise its profile, sharpen its brand, and attract the <em>investors it deserves</em> — start here.
         </p>
-        <p className="contact__intro">
-          A small number of IPA partners at a time. We will be in touch within two business days.
-        </p>
+
         <div className="about__signature" style={{ marginTop: 48 }}>
           — Direct line
           <strong>hello@hgmarketing.com</strong>
