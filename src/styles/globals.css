@@ -116,7 +116,7 @@ button { font: inherit; cursor: pointer; }
   padding: 14px var(--gutter);
 }
 .nav__brand {
-  display: flex; align-items: center; gap: 14px;
+  display: flex; align-items: center; gap: 16px;
   font-family: var(--display);
   font-weight: 700;
   font-size: 22px;
@@ -125,25 +125,38 @@ button { font: inherit; cursor: pointer; }
   line-height: 1;
 }
 .nav__mark {
-  width: 38px; height: 38px;
+  width: 60px; height: 60px;
   background: var(--navy);
   color: var(--cream);
-  display: inline-flex; align-items: baseline; justify-content: center;
+  display: inline-flex; align-items: center; justify-content: center;
   font-family: var(--display);
-  font-weight: 700;
-  font-size: 22px;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  font-variation-settings: "opsz" 60;
+  flex-shrink: 0;
   padding: 6px 0 0 0;
-  font-variation-settings: "opsz" 36;
+}
+.nav__mark em {
+  font-style: normal;
+  color: var(--gold-soft);
+}
+.nav__divider {
+  width: 1px;
+  height: 48px;
+  background: var(--gold-soft);
+  opacity: 0.7;
   flex-shrink: 0;
 }
-.nav__mark::after {
-  content: "";
-  width: 5px; height: 5px;
-  background: var(--gold-soft);
-  border-radius: 50%;
-  align-self: flex-end;
-  margin: 0 0 9px 1px;
+.nav__wordmark {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 32px;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+  font-variation-settings: "opsz" 60;
+  line-height: 1;
 }
 .nav__brand small {
   display: block;
@@ -1302,8 +1315,9 @@ button { font: inherit; cursor: pointer; }
 @media (max-width: 600px) {
   :root { --gutter: 20px; }
   .nav { padding: 14px var(--gutter); }
-  .nav__brand { font-size: 18px; }
-  .nav__brand small { display: none; }
+  .nav__mark { width: 44px; height: 44px; font-size: 26px; }
+  .nav__divider { height: 34px; }
+  .nav__wordmark { font-size: 24px; }
   .nav__cta { padding: 10px 16px; font-size: 12px; }
   .nav__cta .arrow { display: none; }
   .section__title { font-size: 44px; }

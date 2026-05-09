@@ -18,10 +18,9 @@ export default function Nav() {
   return (
     <nav className={`nav${scrolled ? ' scrolled' : ''}`} id="nav">
       <Link href="/" className="nav__brand" aria-label="HGM Home">
-        <span className="nav__mark" aria-hidden="true">H</span>
-        <span>
-          HGM
-        </span>
+        <span className="nav__mark" aria-hidden="true">H<em>.</em></span>
+        <span className="nav__divider" aria-hidden="true"></span>
+        <span className="nav__wordmark">HGM</span>
       </Link>
 
       <div className="nav__links">
