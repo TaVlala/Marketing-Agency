@@ -1,10 +1,13 @@
 'use client';
 
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function ClientEffects() {
+  const pathname = usePathname();
+
+  // Reveal-on-scroll observer — re-scans on every route change
   useEffect(() => {
-    // Reveal on scroll
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -16,30 +19,40 @@ export default function ClientEffects() {
       },
       { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
     );
-    const revealEls = document.querySelectorAll('.reveal');
 
-    // If page loaded with a hash (e.g. /#services), skip animations entirely
-    if (window.location.hash) {
-      revealEls.forEach((el) => el.classList.add('in'));
-    } else {
-      revealEls.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        // Already visible in viewport → reveal immediately, no animation wait
-        if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
-          el.classList.add('in');
-        } else {
-          // Below the fold → animate in on scroll
-          io.observe(el);
-        }
-      });
-    }
+    // Wait one frame for the new route's DOM to render, then scan
+    let fallback: ReturnType<typeof setTimeout> | undefined;
+    const raf = requestAnimationFrame(() => {
+      const revealEls = document.querySelectorAll('.reveal:not(.in)');
 
-    // Fallback: catch anything the observer misses
-    const fallback = setTimeout(() => {
-      revealEls.forEach((el) => el.classList.add('in'));
-    }, 300);
+      if (window.location.hash) {
+        revealEls.forEach((el) => el.classList.add('in'));
+      } else {
+        revealEls.forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
+            el.classList.add('in');
+          } else {
+            io.observe(el);
+          }
+        });
+      }
 
-    // Stat counter animation
+      // Last-resort fallback: any element still hidden after 400ms gets revealed
+      fallback = setTimeout(() => {
+        document.querySelectorAll('.reveal:not(.in)').forEach((el) => el.classList.add('in'));
+      }, 400);
+    });
+
+    return () => {
+      cancelAnimationFrame(raf);
+      io.disconnect();
+      if (fallback) clearTimeout(fallback);
+    };
+  }, [pathname]);
+
+  // Stat counter + hero parallax — only need to set up once
+  useEffect(() => {
     const statIo = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -65,7 +78,6 @@ export default function ClientEffects() {
     );
     document.querySelectorAll('.stat__num[data-count]').forEach((el) => statIo.observe(el));
 
-    // Hero parallax
     const decoNum = document.querySelector('.hero__deco-num') as HTMLElement | null;
     let raf: number | null = null;
     const onParallax = () => {
@@ -78,12 +90,10 @@ export default function ClientEffects() {
     if (decoNum) window.addEventListener('scroll', onParallax, { passive: true });
 
     return () => {
-      io.disconnect();
       statIo.disconnect();
       if (decoNum) window.removeEventListener('scroll', onParallax);
-      clearTimeout(fallback);
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }
