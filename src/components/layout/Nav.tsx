@@ -26,7 +26,7 @@ export default function Nav() {
 
       <div className="nav__links">
         <Link href="/team" className={pathname === '/team' ? 'is-active' : ''}>Who we are</Link>
-        <Link href="/#services">Services</Link>
+        <Link href="/services" className={pathname === '/services' ? 'is-active' : ''}>Services</Link>
         <Link href="/work" className={pathname === '/work' ? 'is-active' : ''}>Work</Link>
 
         <Link href="/#contact">Contact</Link>

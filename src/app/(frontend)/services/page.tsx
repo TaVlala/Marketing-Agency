@@ -1,133 +1,211 @@
 import type { Metadata } from 'next';
-import ScrollReveal from '@/components/ui/ScrollReveal';
-import CTABanner from '@/components/sections/CTABanner';
-import { getServices, getSiteSettings } from '@/lib/payload';
-import type { SiteSettings, Service } from '@payload/payload-types';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Services',
-  description:
-    'IPA marketing strategy, agency selection and management, campaign audits, and best practice training.',
+  title: 'Services — What We Offer',
+  description: 'Six pillars built around the IPA investor journey — from audit and narrative to execution and ongoing advisory.',
 };
 
-const fallbackSettings: SiteSettings = {
-  id: 'fallback', firmName: 'IPA Marketing Agency', heroHeadline: '', heroSubheadline: '',
-  tagline: '', contactEmail: '', socialLinks: { linkedin: '', twitter: '' },
-  createdAt: '', updatedAt: '',
-};
-
-const fallbackServices: Service[] = [
-  { id: '1', title: 'IPA Marketing Strategy', description: 'Develop IPA-aligned marketing strategies that connect objectives to measurable outcomes.', displayOrder: 1, createdAt: '', updatedAt: '' },
-  { id: '2', title: 'Agency Selection & Management', description: 'Find the right agency partners and manage relationships for consistent performance.', displayOrder: 2, createdAt: '', updatedAt: '' },
-  { id: '3', title: 'Campaign Audits & Reviews', description: 'Independent reviews of live or completed campaigns with actionable recommendations.', displayOrder: 3, createdAt: '', updatedAt: '' },
-  { id: '4', title: 'Best Practice Training', description: 'Hands-on workshops bringing IPA best practices to your marketing team.', displayOrder: 4, createdAt: '', updatedAt: '' },
-];
-
-async function safeFetch<T>(fn: () => Promise<T>, fallback: T): Promise<T> {
-  try { return await fn(); } catch { return fallback; }
-}
-
-// Expanded detail copy per service (static — not in CMS, editorial copy)
-const serviceDetails: Record<string, { what: string; who: string; deliverable: string }> = {
-  'IPA Marketing Strategy': {
-    what: 'We work with your team to build an IPA-compliant marketing strategy from the ground up — or audit and improve an existing one. This includes objective-setting, budget allocation, channel planning, and measurement frameworks aligned to the IPA Effectiveness Databank.',
-    who: 'Marketing directors, brand teams, and in-house agencies who want a strategy grounded in proven effectiveness principles rather than trend-chasing.',
-    deliverable: 'Written strategy document · KPI framework · measurement plan',
-  },
-  'Agency Selection & Management': {
-    what: 'We run structured agency selection processes — from brief writing and agency longlist through to credentials review, chemistry meetings, and final selection. Post-appointment, we help you build performance management frameworks that keep agencies accountable.',
-    who: 'Organisations selecting a new creative, media, or digital agency — or those who want to restructure an existing roster for clearer accountability.',
-    deliverable: 'Selection process facilitation · agency brief · scorecard · performance SLA',
-  },
-  'Campaign Audits & Reviews': {
-    what: 'An independent review of a live or completed campaign against IPA effectiveness criteria. We analyse targeting, messaging, media mix, measurement approach, and learnings — then deliver a frank, actionable report.',
-    who: 'Teams who want a second opinion on campaign performance, or organisations preparing for an IPA Effectiveness Award submission.',
-    deliverable: 'Written audit report · findings presentation · priority actions',
-  },
-  'Best Practice Training': {
-    what: 'Half-day and full-day workshops for marketing teams covering IPA best practice: briefing, agency management, campaign evaluation, and effectiveness thinking. Delivered on-site or remotely.',
-    who: 'Marketing teams at all levels — from graduates to senior managers — who want structured, practical IPA knowledge.',
-    deliverable: 'Tailored workshop delivery · slides and handouts · follow-up Q&A session',
-  },
-};
-
-export default async function ServicesPage() {
-  const [settings, services] = await Promise.all([
-    safeFetch(getSiteSettings, fallbackSettings),
-    safeFetch(getServices, fallbackServices),
-  ]);
-
+export default function ServicesPage() {
   return (
     <>
-      {/* Page header */}
-      <section className="pt-40 pb-20 md:pt-48 md:pb-28">
-        <div className="max-w-screen-xl mx-auto px-6 md:px-12">
-          <ScrollReveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500 mb-6">
-              What we offer
+      {/* ── HERO ─────────────────────────────────────────── */}
+      <header className="work-hero">
+        <div className="work-hero__inner">
+          <div className="work-hero__masthead">
+            <span>HGM &nbsp;·&nbsp; Services</span>
+            <em>Built around the IPA investor journey.</em>
+            <span>Hidden Gem Marketing / 2026</span>
+          </div>
+
+          <div className="work-hero__category"><span className="bar"></span>What We Offer</div>
+          <h1 className="work-hero__title">Six pillars<span className="stop">.</span> <em>One</em> partner.</h1>
+
+          <div className="work-hero__sub">
+            <p className="work-hero__lede">
+              A full-service menu built around the <em>IPA investor journey</em> — from understanding your investment potential to ongoing advisory and execution support.
             </p>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-primary leading-[1.05] tracking-tight max-w-3xl mb-8">
-              Services built around IPA rigour.
-            </h1>
-            <p className="text-xl text-neutral-500 max-w-2xl leading-relaxed">
-              Everything we do is grounded in IPA best practice — the same frameworks used by the
-              world&rsquo;s most effective marketing organisations.
-            </p>
-          </ScrollReveal>
+          </div>
         </div>
-      </section>
+      </header>
 
-      {/* Services list */}
-      <section className="pb-24 md:pb-32">
-        <div className="max-w-screen-xl mx-auto px-6 md:px-12">
-          <div className="flex flex-col divide-y divide-neutral-200 border-t border-neutral-200">
-            {services.map((service, i) => {
-              const detail = serviceDetails[service.title];
-              return (
-                <ScrollReveal key={service.id} delay={i * 60}>
-                  <div className="py-12 md:py-16 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 group">
-                    {/* Number + title */}
-                    <div className="md:col-span-4">
-                      <p className="text-xs font-semibold uppercase tracking-[0.15em] text-neutral-400 mb-4">
-                        0{i + 1}
-                      </p>
-                      <h2 className="text-2xl md:text-3xl font-bold text-primary tracking-tight leading-snug">
-                        {service.title}
-                      </h2>
-                    </div>
+      {/* ── WHAT WE OFFER ────────────────────────────────── */}
+      <section className="section services" id="services">
+        <div className="services__grid-bg" aria-hidden="true"></div>
+        <div className="section__inner">
+          <div className="section__head reveal">
+            <div>
+              <div className="section__num"><span className="bar"></span>01 — Capabilities</div>
+              <h2 className="section__title"><span className="light">What</span> <em>we offer</em>.</h2>
+            </div>
+            <div className="section__head-meta">
+              Six pillars
+              <strong>One senior partner.</strong>
+            </div>
+          </div>
 
-                    {/* Detail */}
-                    <div className="md:col-span-8">
-                      <p className="text-base text-neutral-600 leading-relaxed mb-8">
-                        {detail?.what || service.description}
-                      </p>
-
-                      {detail && (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                          <div>
-                            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-neutral-400 mb-2">
-                              Who it&rsquo;s for
-                            </p>
-                            <p className="text-sm text-neutral-500 leading-relaxed">{detail.who}</p>
-                          </div>
-                          <div>
-                            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-neutral-400 mb-2">
-                              What you get
-                            </p>
-                            <p className="text-sm text-neutral-500 leading-relaxed">{detail.deliverable}</p>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </ScrollReveal>
-              );
-            })}
+          <div className="services__grid">
+            <div className="service reveal">
+              <div className="service__num">01<small>Audit</small></div>
+              <h3 className="service__title">Investment Potential<br /><em>Audit</em></h3>
+              <p className="service__obj">Develop a clear, evidence-based understanding of your destination&apos;s investment potential, market position, and current visibility.</p>
+              <ul className="service__list">
+                <li>Investment landscape &amp; context</li>
+                <li>Competitive positioning analysis</li>
+                <li>Investment Readiness Assessment</li>
+                <li>Target investor mapping</li>
+                <li>Visibility &amp; communication gaps</li>
+              </ul>
+            </div>
+            <div className="service reveal" style={{ '--rd': '100ms' } as React.CSSProperties}>
+              <div className="service__num">02<small>Narrative</small></div>
+              <h3 className="service__title">Investment Narrative<br /><em>&amp; Positioning</em></h3>
+              <p className="service__obj">Transform insights into a clear, investor-centric narrative that positions your destination competitively in the global investment landscape.</p>
+              <ul className="service__list">
+                <li>Investment Vision &amp; Story</li>
+                <li>Investment Logic Model</li>
+                <li>Priority Sectors &amp; Investor Profiles</li>
+                <li>Investment Value Proposition Canvas</li>
+                <li>Tagline / Investment Brand Promise</li>
+              </ul>
+            </div>
+            <div className="service reveal" style={{ '--rd': '200ms' } as React.CSSProperties}>
+              <div className="service__num">03<small>Strategy</small></div>
+              <h3 className="service__title">Investment Communication<br /><em>Strategy</em></h3>
+              <p className="service__obj">Design a structured system to attract, engage, and convert investors using the narrative and positioning defined earlier.</p>
+              <ul className="service__list">
+                <li>Investment Deal Flow Engine</li>
+                <li>Channel &amp; campaign strategy</li>
+                <li>Messaging architecture</li>
+                <li>Investor journey framework</li>
+              </ul>
+            </div>
+            <div className="service reveal">
+              <div className="service__num">04<small>Blueprints</small></div>
+              <h3 className="service__title">Execution<br /><em>Blueprints</em></h3>
+              <p className="service__obj">Provide clear, actionable instructions for implementation partners and internal teams.</p>
+              <ul className="service__list">
+                <li>Website &amp; digital platforms briefs</li>
+                <li>Design &amp; identity briefs</li>
+                <li>Media &amp; PR briefs</li>
+                <li>Conferences &amp; investor outreach briefs</li>
+              </ul>
+            </div>
+            <div className="service reveal" style={{ '--rd': '100ms' } as React.CSSProperties}>
+              <div className="service__num">05<small>Execution</small></div>
+              <h3 className="service__title">Guided<br /><em>Execution</em></h3>
+              <p className="service__obj">Support implementation and ensure the strategy translates into measurable investor engagement.</p>
+              <ul className="service__list">
+                <li>Vendor supervision</li>
+                <li>Campaign optimisation</li>
+                <li>Investor engagement refinement</li>
+                <li>Deal flow monitoring</li>
+              </ul>
+            </div>
+            <div className="service reveal" style={{ '--rd': '200ms' } as React.CSSProperties}>
+              <div className="service__num">06<small>Partners</small></div>
+              <h3 className="service__title">Access to Execution<br /><em>Partners</em></h3>
+              <p className="service__obj">We connect you with global media platforms, design studios, and digital agencies aligned with your strategy from day one.</p>
+              <ul className="service__list">
+                <li>Global media platforms</li>
+                <li>Design &amp; branding studios</li>
+                <li>Digital &amp; campaign agencies</li>
+                <li>Investor-facing content specialists</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
-      <CTABanner settings={settings} />
+      {/* ── HOW WE WORK ──────────────────────────────────── */}
+      <section className="process" id="process">
+        <div className="process__inner">
+          <div className="process__head reveal">
+            <h2 className="process__title">How we <em>work</em>.</h2>
+            <p className="process__intro">
+              A six-phase engagement, scoped to each IPA. Every engagement begins with a no-commitment discovery call.
+            </p>
+          </div>
+
+          <div className="steps">
+            <div className="step reveal">
+              <div className="step__node"></div>
+              <div className="step__num">Phase 01</div>
+              <h4 className="step__title"><em>Onboarding</em></h4>
+              <ul className="step__list">
+                <li>Kick-off call &amp; briefing</li>
+                <li>Access to existing materials</li>
+                <li>Priorities &amp; quick wins agreed</li>
+              </ul>
+            </div>
+            <div className="step reveal" style={{ '--rd': '100ms' } as React.CSSProperties}>
+              <div className="step__node"></div>
+              <div className="step__num">Phase 02</div>
+              <h4 className="step__title">Diagnose</h4>
+              <ul className="step__list">
+                <li>Desk research (economy, sectors, competitors)</li>
+                <li>Stakeholder interviews (IPA, policymakers)</li>
+                <li>Investor insights (existing &amp; target)</li>
+                <li>Marketing &amp; visibility audit</li>
+              </ul>
+            </div>
+            <div className="step reveal" style={{ '--rd': '200ms' } as React.CSSProperties}>
+              <div className="step__node"></div>
+              <div className="step__num">Phase 03</div>
+              <h4 className="step__title"><em>Define</em></h4>
+              <ul className="step__list">
+                <li>Strategic workshops (vision, sectors, targeting)</li>
+                <li>Investment story &amp; positioning development</li>
+                <li>Investment Logic Model (Why / How / What)</li>
+                <li>Value Proposition Canvas (by investor profiles)</li>
+              </ul>
+            </div>
+            <div className="step reveal" style={{ '--rd': '300ms' } as React.CSSProperties}>
+              <div className="step__node"></div>
+              <div className="step__num">Phase 04</div>
+              <h4 className="step__title">Activate</h4>
+              <ul className="step__list">
+                <li>Investor journey mapping</li>
+                <li>Channel strategy (digital, media, events)</li>
+                <li>Messaging architecture</li>
+              </ul>
+            </div>
+            <div className="step reveal" style={{ '--rd': '400ms' } as React.CSSProperties}>
+              <div className="step__node"></div>
+              <div className="step__num">Phase 05</div>
+              <h4 className="step__title"><em>Implement</em></h4>
+              <ul className="step__list">
+                <li>Website &amp; digital platform briefs</li>
+                <li>Design &amp; identity briefs</li>
+                <li>Media &amp; outreach briefs</li>
+                <li>Conference &amp; activation guidelines</li>
+              </ul>
+            </div>
+            <div className="step reveal" style={{ '--rd': '500ms' } as React.CSSProperties}>
+              <div className="step__node"></div>
+              <div className="step__num">Phase 06</div>
+              <h4 className="step__title">Advisory</h4>
+              <ul className="step__list">
+                <li>Vendor alignment &amp; supervision</li>
+                <li>Campaign optimisation</li>
+                <li>Investor engagement refinement</li>
+                <li>Deal flow monitoring</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA ──────────────────────────────────────────── */}
+      <section className="work-cta">
+        <div className="work-cta__inner">
+          <div>
+            <h2 className="work-cta__title">Ready to <em>start</em>?</h2>
+            <div className="work-cta__sub">— Begin with a no-commitment discovery call.</div>
+          </div>
+          <Link href="/#contact" className="work-cta__btn">Start a conversation <span className="arrow">→</span></Link>
+        </div>
+      </section>
     </>
   );
 }
