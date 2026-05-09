@@ -1,78 +1,54 @@
 import Link from 'next/link';
 
-const navLinks = [
-  { label: 'About', href: '/about' },
-  { label: 'Work', href: '/work' },
-  { label: 'Contact', href: '/contact' },
-  { label: 'Privacy Policy', href: '/privacy' },
-];
-
-// TODO: replace social links with CMS-managed site-settings values
-const socialLinks = [
-  { label: 'LinkedIn', href: '#' },
-];
-
 export default function Footer() {
-  const year = new Date().getFullYear();
-
   return (
-    <footer className="bg-primary text-white">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 mb-12">
-          {/* Brand */}
-          <div className="flex flex-col gap-4">
-            <span className="font-bold text-xl tracking-tight">IPA</span>{/* TODO: replace */}
-            <p className="text-neutral-300 text-sm leading-relaxed max-w-xs">
-              Expert IPA marketing strategy and agency management.{/* TODO: replace with tagline from CMS */}
-            </p>
+    <footer className="footer">
+      <div className="footer__deco-num" aria-hidden="true">HGM</div>
+      <div className="footer__inner">
+        <div className="footer__top">
+          <div className="footer__brand-block">
+            <div className="footer__monogram">HGM<span className="stop">.</span></div>
+            <div className="footer__brand-tag">
+              <em>Hidden Gem Marketing</em> — a boutique consultancy built for the investment promotion sector.
+            </div>
           </div>
 
-          {/* Nav */}
-          <nav aria-label="Footer navigation">
-            <ul className="flex flex-col gap-3">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-neutral-300 hover:text-white transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+          <div>
+            <div className="footer__col-head">— Navigate</div>
+            <ul className="footer__list">
+              <li><Link href="/#about">About</Link></li>
+              <li><Link href="/team">Team</Link></li>
+              <li><Link href="/#services">Services</Link></li>
+              <li><Link href="/work">Work</Link></li>
+              <li><Link href="/#process">Process</Link></li>
+              <li><Link href="/#contact">Contact</Link></li>
             </ul>
-          </nav>
+          </div>
 
-          {/* Social + contact */}
-          <div className="flex flex-col gap-3">
-            {socialLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-neutral-300 hover:text-white transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
-            <a
-              href="mailto:hello@example.com" /* TODO: replace with CMS contact email */
-              className="text-sm text-neutral-300 hover:text-white transition-colors mt-2"
-            >
-              hello@example.com
-            </a>
+          <div>
+            <div className="footer__col-head">— Capabilities</div>
+            <ul className="footer__list">
+              <li><Link href="/#services">Brand &amp; Positioning</Link></li>
+              <li><Link href="/#services">Campaigns</Link></li>
+              <li><Link href="/#services">Diagnostic &amp; Audit</Link></li>
+              <li><Link href="/#services">Senior Counsel</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <div className="footer__col-head">— Reach us</div>
+            <ul className="footer__list">
+              <li><a href="mailto:hello@hgmarketing.com">hello@hgmarketing.com</a></li>
+              <li><Link href="/#contact">Discovery call</Link></li>
+              <li><Link href="/#contact">The Quarterly</Link></li>
+            </ul>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <p className="text-xs text-neutral-400">
-            &copy; {year} IPA Marketing Agency. All rights reserved.{/* TODO: replace firm name */}
-          </p>
-          <Link href="/privacy" className="text-xs text-neutral-400 hover:text-white transition-colors">
-            Privacy &amp; Cookie Policy
-          </Link>
+        <div className="footer__bot">
+          <div>© 2026 HGM · Hidden Gem Marketing.</div>
+          <div className="center">— Boutique. Senior. Always. —</div>
+          <div className="right">Investment Promotion. Marketing. Redefined.</div>
         </div>
       </div>
     </footer>
