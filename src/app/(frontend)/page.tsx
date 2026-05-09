@@ -1,6 +1,5 @@
 import HeroSection from '@/components/HeroSection';
 import ContactForm from '@/components/ContactForm';
-import Link from 'next/link';
 
 export const metadata = {
   title: 'HGM · Hidden Gem Marketing — Investment Promotion. Marketing. Redefined.',
@@ -88,7 +87,7 @@ export default function HomePage() {
             <div className="service reveal">
               <div className="service__num">01<small>Audit</small></div>
               <h3 className="service__title">Investment Potential<br /><em>Audit</em></h3>
-              <p className="service__obj">Develop a clear, evidence-based understanding of your destination's investment potential, market position, and current visibility.</p>
+              <p className="service__obj">Develop a clear, evidence-based understanding of your destination&apos;s investment potential, market position, and current visibility.</p>
               <ul className="service__list">
                 <li>Investment landscape &amp; context</li>
                 <li>Competitive positioning analysis</li>
