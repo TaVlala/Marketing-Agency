@@ -17,12 +17,18 @@ export default function ClientEffects() {
       { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
     );
     const revealEls = document.querySelectorAll('.reveal');
-    revealEls.forEach((el) => io.observe(el));
 
-    // Fallback: force reveal all elements after 1.5s in case IntersectionObserver misses them
+    // If page loaded with a hash (e.g. /#services), skip animations entirely
+    if (window.location.hash) {
+      revealEls.forEach((el) => el.classList.add('in'));
+    } else {
+      revealEls.forEach((el) => io.observe(el));
+    }
+
+    // Fallback: force reveal all after 800ms in case IntersectionObserver misses any
     const fallback = setTimeout(() => {
       revealEls.forEach((el) => el.classList.add('in'));
-    }, 1500);
+    }, 800);
 
     // Stat counter animation
     const statIo = new IntersectionObserver(
