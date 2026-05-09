@@ -107,7 +107,7 @@ button { font: inherit; cursor: pointer; }
   background: rgba(245,240,225,0.0);
   backdrop-filter: blur(0px);
   transition: background 320ms ease, backdrop-filter 320ms ease, padding 320ms ease, border-color 320ms ease;
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid rgba(20,33,61,0.12);
 }
 .nav.scrolled {
   background: rgba(245,240,225,0.84);
