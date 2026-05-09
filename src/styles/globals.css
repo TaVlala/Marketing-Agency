@@ -823,7 +823,11 @@ button { font: inherit; cursor: pointer; }
 }
 .services .section__title { color: var(--cream); }
 .services .section__title em { color: var(--gold-soft); }
-.services .section__head { border-bottom-color: rgba(245,240,225,0.25); }
+.services .section__head {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: clamp(36px, 6vh, 64px);
+}
 .services .section__num { color: var(--gold-soft); }
 .services .section__num .bar { background: var(--gold-soft); }
 .services .section__head-meta { color: rgba(245,240,225,0.6); }
@@ -837,7 +841,7 @@ button { font: inherit; cursor: pointer; }
 .services__grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 0; position: relative; z-index: 1;
-  border-top: 1px solid rgba(245,240,225,0.18);
+  border: 1px solid rgba(245,240,225,0.18);
 }
 .service {
   padding: 56px 32px 48px 32px;
@@ -845,11 +849,11 @@ button { font: inherit; cursor: pointer; }
   border-bottom: 1px solid rgba(245,240,225,0.18);
   display: grid;
   grid-template-rows: auto auto 1fr;
-  min-height: 420px;
+  min-height: 460px;
   position: relative;
   transition: background 320ms ease;
 }
-.service:last-child { border-right: none; }
+.service:nth-child(3n) { border-right: none; }
 .service:nth-last-child(-n+3) { border-bottom: none; }
 .service:hover { background: rgba(245,240,225,0.025); }
 .service__num {
@@ -874,7 +878,7 @@ button { font: inherit; cursor: pointer; }
   padding-bottom: 24px;
   border-bottom: 1px solid rgba(245,240,225,0.18);
   font-variation-settings: "opsz" 72;
-  min-height: 95px;
+  min-height: 130px;
   display: flex; flex-direction: column; justify-content: flex-end;
 }
 .service__title em { font-style: italic; color: var(--gold-soft); }
@@ -903,14 +907,16 @@ button { font: inherit; cursor: pointer; }
 }
 @media (max-width: 1100px) {
   .services__grid { grid-template-columns: 1fr 1fr; }
+  /* Reset: every card gets right + bottom by default */
+  .service { border-right: 1px solid rgba(245,240,225,0.18); border-bottom: 1px solid rgba(245,240,225,0.18); }
+  /* In 2-col: rightmost cards (2, 4, 6) drop right border */
   .service:nth-child(2n) { border-right: none; }
-  .service:nth-last-child(-n+3) { border-bottom: 1px solid rgba(245,240,225,0.18); }
+  /* Last row in 2-col is the last 2 cards */
   .service:nth-last-child(-n+2) { border-bottom: none; }
 }
 @media (max-width: 700px) {
   .services__grid { grid-template-columns: 1fr; }
-  .service { border-right: none; }
-  .service:nth-last-child(-n+2) { border-bottom: 1px solid rgba(245,240,225,0.18); }
+  .service { border-right: none; border-bottom: 1px solid rgba(245,240,225,0.18); }
   .service:last-child { border-bottom: none; }
 }
 
