@@ -88,69 +88,31 @@ export default function HomePage() {
               <div className="service__num">01<small>Audit</small></div>
               <h3 className="service__title">Investment Potential<br /><em>Audit</em></h3>
               <p className="service__obj">Develop a clear, evidence-based understanding of your destination&apos;s investment potential, market position, and current visibility.</p>
-              <ul className="service__list">
-                <li>Investment landscape &amp; context</li>
-                <li>Competitive positioning analysis</li>
-                <li>Investment Readiness Assessment</li>
-                <li>Target investor mapping</li>
-                <li>Visibility &amp; communication gaps</li>
-              </ul>
             </div>
             <div className="service reveal" style={{ '--rd': '100ms' } as React.CSSProperties}>
               <div className="service__num">02<small>Narrative</small></div>
               <h3 className="service__title">Investment Narrative<br /><em>&amp; Positioning</em></h3>
               <p className="service__obj">Transform insights into a clear, investor-centric narrative that positions your destination competitively in the global investment landscape.</p>
-              <ul className="service__list">
-                <li>Investment Vision &amp; Story</li>
-                <li>Investment Logic Model</li>
-                <li>Priority Sectors &amp; Investor Profiles</li>
-                <li>Investment Value Proposition Canvas</li>
-                <li>Tagline / Investment Brand Promise</li>
-              </ul>
             </div>
             <div className="service reveal" style={{ '--rd': '200ms' } as React.CSSProperties}>
               <div className="service__num">03<small>Strategy</small></div>
               <h3 className="service__title">Investment Communication<br /><em>Strategy</em></h3>
               <p className="service__obj">Design a structured system to attract, engage, and convert investors using the narrative and positioning defined earlier.</p>
-              <ul className="service__list">
-                <li>Investment Deal Flow Engine</li>
-                <li>Channel &amp; campaign strategy</li>
-                <li>Messaging architecture</li>
-                <li>Investor journey framework</li>
-              </ul>
             </div>
             <div className="service reveal">
               <div className="service__num">04<small>Blueprints</small></div>
               <h3 className="service__title">Execution<br /><em>Blueprints</em></h3>
               <p className="service__obj">Provide clear, actionable instructions for implementation partners and internal teams.</p>
-              <ul className="service__list">
-                <li>Website &amp; digital platforms briefs</li>
-                <li>Design &amp; identity briefs</li>
-                <li>Media &amp; PR briefs</li>
-                <li>Conferences &amp; investor outreach briefs</li>
-              </ul>
             </div>
             <div className="service reveal" style={{ '--rd': '100ms' } as React.CSSProperties}>
               <div className="service__num">05<small>Execution</small></div>
               <h3 className="service__title">Guided<br /><em>Execution</em></h3>
               <p className="service__obj">Support implementation and ensure the strategy translates into measurable investor engagement.</p>
-              <ul className="service__list">
-                <li>Vendor supervision</li>
-                <li>Campaign optimisation</li>
-                <li>Investor engagement refinement</li>
-                <li>Deal flow monitoring</li>
-              </ul>
             </div>
             <div className="service reveal" style={{ '--rd': '200ms' } as React.CSSProperties}>
               <div className="service__num">06<small>Partners</small></div>
               <h3 className="service__title">Access to Execution<br /><em>Partners</em></h3>
               <p className="service__obj">We connect you with global media platforms, design studios, and digital agencies aligned with your strategy from day one.</p>
-              <ul className="service__list">
-                <li>Global media platforms</li>
-                <li>Design &amp; branding studios</li>
-                <li>Digital &amp; campaign agencies</li>
-                <li>Investor-facing content specialists</li>
-              </ul>
             </div>
           </div>
         </div>
