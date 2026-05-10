@@ -21,13 +21,27 @@ export default function Nav() {
     setMenuOpen(false);
   }, [pathname]);
 
-  // Click handler for /#contact links.
-  // Same page (/) → manual smooth scroll with fixed-nav offset.
-  // Other pages → fall through to native <a> href so the browser does a
-  // full navigation and respects scroll-margin-top on the fresh load.
+  // After cross-page navigation to /, if the URL has #contact scroll with
+  // the fixed-nav offset. The timeout lets the page finish rendering first.
+  useEffect(() => {
+    if (pathname !== '/') return;
+    if (typeof window === 'undefined' || window.location.hash !== '#contact') return;
+    const id = setTimeout(() => {
+      const el = document.getElementById('contact');
+      if (!el) return;
+      const navEl = document.getElementById('nav');
+      const navH = navEl?.getBoundingClientRect().height ?? 106;
+      window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - navH - 24, behavior: 'smooth' });
+    }, 80);
+    return () => clearTimeout(id);
+  }, [pathname]);
+
+  // Same-page (/) click: prevent Link navigation and smooth-scroll with offset.
+  // Cross-page: let Link navigate normally (scroll={false} suppresses auto-scroll,
+  // the pathname useEffect above corrects it once the page renders).
   const handleContactClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
     setMenuOpen(false);
-    if (pathname !== '/') return; // let native navigation handle cross-page
+    if (pathname !== '/') return;
     e.preventDefault();
     const el = document.getElementById('contact');
     if (!el) return;
@@ -58,12 +72,12 @@ export default function Nav() {
         <Link href="/team" className={pathname === '/team' ? 'is-active' : ''}>Who we are</Link>
         <Link href="/services" className={pathname === '/services' ? 'is-active' : ''}>Services</Link>
         <Link href="/work" className={pathname === '/work' ? 'is-active' : ''}>Work</Link>
-        <a href="/#contact" onClick={handleContactClick}>Contact</a>
+        <Link href="/#contact" scroll={false} onClick={handleContactClick}>Contact</Link>
       </div>
 
-      <a href="/#contact" onClick={handleContactClick} className="nav__cta">
+      <Link href="/#contact" scroll={false} onClick={handleContactClick} className="nav__cta">
         Start a conversation <span className="arrow">→</span>
-      </a>
+      </Link>
 
       <button
         type="button"
@@ -81,11 +95,11 @@ export default function Nav() {
           <Link href="/team" className={pathname === '/team' ? 'is-active' : ''}>Who we are</Link>
           <Link href="/services" className={pathname === '/services' ? 'is-active' : ''}>Services</Link>
           <Link href="/work" className={pathname === '/work' ? 'is-active' : ''}>Work</Link>
-          <a href="/#contact" onClick={handleContactClick}>Contact</a>
+          <Link href="/#contact" scroll={false} onClick={handleContactClick}>Contact</Link>
         </div>
-        <a href="/#contact" onClick={handleContactClick} className="nav__drawer-cta">
+        <Link href="/#contact" scroll={false} onClick={handleContactClick} className="nav__drawer-cta">
           Start a conversation <span className="arrow">→</span>
-        </a>
+        </Link>
       </div>
     </nav>
   );
