@@ -44,18 +44,19 @@ export default buildConfig({
 
   // Secret for JWT — must be set in Railway environment variables
   // Generate with: openssl rand -hex 32
+  // Throwing here breaks Vercel builds because Next.js statically generates
+  // the /(payload)/api routes at build time even when Payload only runs on
+  // Railway. Warn loudly instead — the real protection is setting the env var
+  // in both Vercel AND Railway dashboards.
   secret: (() => {
     const s = process.env.PAYLOAD_SECRET;
     const isDefault = !s || s === 'CHANGE-ME-IN-PRODUCTION';
-    if (isDefault && process.env.NODE_ENV === 'production') {
-      throw new Error(
-        '[Payload] PAYLOAD_SECRET env var is missing or still set to the default placeholder.\n' +
-        'Generate a real secret with: openssl rand -hex 32\n' +
-        'Then set it in your Railway service environment variables.'
-      );
-    }
     if (isDefault) {
-      console.warn('[Payload] PAYLOAD_SECRET is not set — using insecure default. Set a real secret before deploying.');
+      console.warn(
+        '[Payload] PAYLOAD_SECRET env var is missing or still set to the default placeholder. ' +
+        'Generate a real secret with: openssl rand -hex 32 ' +
+        'and set it in both your Railway AND Vercel environment variables.'
+      );
     }
     return s ?? 'CHANGE-ME-IN-PRODUCTION';
   })(),
