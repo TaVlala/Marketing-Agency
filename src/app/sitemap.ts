@@ -1,21 +1,18 @@
 import type { MetadataRoute } from 'next';
 import { getCaseStudies, getTeamMembers } from '@/lib/payload';
 
-// Revalidate sitemap every hour alongside other Payload data
-export const revalidate = 3600;
-
-const rawUrl = process.env.NEXT_PUBLIC_SITE_URL ?? '';
-
-if (!rawUrl.startsWith('http') && process.env.NODE_ENV === 'production') {
-  throw new Error(
-    '[sitemap.ts] NEXT_PUBLIC_SITE_URL is not set or invalid in production.\n' +
-    'Set it to your production URL (e.g. https://ipamarketing.co.uk) in Vercel environment variables.'
-  );
-}
-
-const BASE_URL = rawUrl.startsWith('http') ? rawUrl : 'http://localhost:3000';
+// force-dynamic: env var is only available on Vercel at request time,
+// not during Railway's build step — avoids build-time throw.
+// Vercel will cache the response via CDN; revalidation handled by ISR tags.
+export const dynamic = 'force-dynamic';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const rawUrl = process.env.NEXT_PUBLIC_SITE_URL ?? '';
+  if (!rawUrl.startsWith('http') && process.env.NODE_ENV === 'production') {
+    console.warn('[sitemap.ts] NEXT_PUBLIC_SITE_URL is not set — sitemap URLs will use localhost fallback.');
+  }
+  const BASE_URL = rawUrl.startsWith('http') ? rawUrl : 'http://localhost:3000';
+
   const staticPages: MetadataRoute.Sitemap = [
     { url: `${BASE_URL}/`,         lastModified: new Date(), changeFrequency: 'monthly', priority: 1.0 },
     { url: `${BASE_URL}/about`,    lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
