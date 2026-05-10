@@ -4,14 +4,45 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 
-const STORAGE_KEY = 'cookie_consent';
+export const STORAGE_KEY = 'cookie_consent';
 const PLAUSIBLE_DOMAIN = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
+
+/** Custom DOM event fired by CookieSettingsButton to re-open the banner */
+export const RESET_EVENT = 'cookie-consent-reset';
 
 type ConsentValue = 'accepted' | 'rejected' | null;
 
+// ─── Safe localStorage helpers (throws in private browsing) ─────────────────
+
+function getStoredConsent(): ConsentValue {
+  try {
+    return localStorage.getItem(STORAGE_KEY) as ConsentValue;
+  } catch {
+    return null; // private browsing or storage blocked — treat as no preference
+  }
+}
+
+function setStoredConsent(value: 'accepted' | 'rejected'): void {
+  try {
+    localStorage.setItem(STORAGE_KEY, value);
+  } catch {
+    // silent — banner will re-appear on next visit
+  }
+}
+
+function clearStoredConsent(): void {
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch {
+    // silent
+  }
+}
+
+// ─── Plausible loader ────────────────────────────────────────────────────────
+
 function loadPlausible() {
   if (!PLAUSIBLE_DOMAIN || typeof document === 'undefined') return;
-  if (document.querySelector('script[data-plausible]')) return; // already loaded
+  if (document.querySelector('script[data-plausible]')) return;
 
   const script = document.createElement('script');
   script.src = 'https://plausible.io/js/script.js';
@@ -21,33 +52,44 @@ function loadPlausible() {
   document.head.appendChild(script);
 }
 
+// ─── Component ───────────────────────────────────────────────────────────────
+
 export default function CookieConsent() {
   const [consent, setConsent] = useState<ConsentValue>(null);
   const [visible, setVisible] = useState(false);
 
-  // Check stored preference on mount
+  // Check stored preference on mount; listen for manual reset from footer
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) as ConsentValue;
+    const stored = getStoredConsent();
     if (stored === 'accepted') {
       setConsent('accepted');
       loadPlausible();
     } else if (stored === 'rejected') {
       setConsent('rejected');
     } else {
-      // No preference yet — show banner after short delay
       setTimeout(() => setVisible(true), 1000);
     }
+
+    // CookieSettingsButton dispatches this event to re-open the banner
+    const handleReset = () => {
+      clearStoredConsent();
+      setConsent(null);
+      setVisible(true);
+    };
+
+    window.addEventListener(RESET_EVENT, handleReset);
+    return () => window.removeEventListener(RESET_EVENT, handleReset);
   }, []);
 
   const accept = () => {
-    localStorage.setItem(STORAGE_KEY, 'accepted');
+    setStoredConsent('accepted');
     setConsent('accepted');
     setVisible(false);
     loadPlausible();
   };
 
   const reject = () => {
-    localStorage.setItem(STORAGE_KEY, 'rejected');
+    setStoredConsent('rejected');
     setConsent('rejected');
     setVisible(false);
   };

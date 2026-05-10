@@ -1,6 +1,7 @@
 import { buildConfig } from 'payload';
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
+import { Users } from './collections/Users.ts';
 import { TeamMembers } from './collections/TeamMembers.ts';
 import { Services } from './collections/Services.ts';
 import { CaseStudies } from './collections/CaseStudies.ts';
@@ -29,11 +30,7 @@ export default buildConfig({
 
   // Collections
   collections: [
-    {
-      slug: 'users',
-      auth: true,
-      fields: [],
-    },
+    Users,
     Media,
     TeamMembers,
     Services,
@@ -45,8 +42,23 @@ export default buildConfig({
   // Globals
   globals: [SiteSettings],
 
-  // Secret for JWT
-  secret: process.env.PAYLOAD_SECRET || 'CHANGE-ME-IN-PRODUCTION',
+  // Secret for JWT — must be set in Railway environment variables
+  // Generate with: openssl rand -hex 32
+  secret: (() => {
+    const s = process.env.PAYLOAD_SECRET;
+    const isDefault = !s || s === 'CHANGE-ME-IN-PRODUCTION';
+    if (isDefault && process.env.NODE_ENV === 'production') {
+      throw new Error(
+        '[Payload] PAYLOAD_SECRET env var is missing or still set to the default placeholder.\n' +
+        'Generate a real secret with: openssl rand -hex 32\n' +
+        'Then set it in your Railway service environment variables.'
+      );
+    }
+    if (isDefault) {
+      console.warn('[Payload] PAYLOAD_SECRET is not set — using insecure default. Set a real secret before deploying.');
+    }
+    return s ?? 'CHANGE-ME-IN-PRODUCTION';
+  })(),
 
   // Media files stored on Railway local disk (configure Railway persistent volume)
   // Decision: no official Payload 3 Cloudinary adapter exists.

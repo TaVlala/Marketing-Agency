@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import ContactForm from '@/components/sections/ContactForm';
-import { getSiteSettings } from '@/lib/payload';
+import { getSiteSettings, safeFetch } from '@/lib/payload';
 import type { SiteSettings } from '@payload/payload-types';
 
 export const metadata: Metadata = {
@@ -16,12 +16,8 @@ const fallbackSettings: SiteSettings = {
   createdAt: '', updatedAt: '',
 };
 
-async function safeFetch<T>(fn: () => Promise<T>, fallback: T): Promise<T> {
-  try { return await fn(); } catch { return fallback; }
-}
-
 export default async function ContactPage() {
-  const settings = await safeFetch(getSiteSettings, fallbackSettings);
+  const settings = await safeFetch(getSiteSettings, fallbackSettings, 'getSiteSettings');
 
   return (
     <section className="pt-40 pb-24 md:pt-48 md:pb-32">

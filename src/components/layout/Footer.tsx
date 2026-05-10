@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import CookieSettingsButton from './CookieSettingsButton';
 
 export default function Footer() {
   return (
@@ -64,7 +65,10 @@ export default function Footer() {
         <div className="footer__bot">
           <div>© 2026 HGM · Hidden Gem Marketing.</div>
           <div className="center">— Boutique. Senior. Always. —</div>
-          <div className="right">Investment Promotion. Marketing. Redefined.</div>
+          <div className="right flex items-center gap-4">
+            <span>Investment Promotion. Marketing. Redefined.</span>
+            <CookieSettingsButton />
+          </div>
         </div>
       </div>
     </footer>

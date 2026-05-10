@@ -30,7 +30,18 @@ export const Services: CollectionConfig = {
       type: 'textarea',
       label: 'SVG Icon Markup',
       admin: {
-        description: 'Paste raw SVG markup here. Use viewBox="0 0 24 24" and currentColor for stroke/fill.',
+        description: 'Paste raw SVG markup here. Must start with <svg and include viewBox="0 0 24 24". Use currentColor for stroke/fill so hover colours work.',
+      },
+      validate: (value: string | null | undefined) => {
+        if (!value) return true; // optional field — default icons are used when blank
+        const trimmed = value.trim();
+        if (!trimmed.startsWith('<svg')) {
+          return 'Icon markup must be valid SVG starting with <svg';
+        }
+        if (!trimmed.includes('viewBox')) {
+          return 'SVG must include a viewBox attribute (e.g. viewBox="0 0 24 24")';
+        }
+        return true;
       },
     },
     {

@@ -224,10 +224,20 @@ Body has `overflow-x: hidden` to prevent rogue horizontal scroll. The mobile dra
 ## 10. Scripts
 
 ```bash
-npm run dev        # Next.js dev server on http://localhost:3000
-npm run build      # Production build
-npm run start      # Run production build locally
-npm run lint       # ESLint
+npm run dev             # Next.js dev server on http://localhost:3000
+npm run build           # Production build (ESLint errors will fail the build)
+npm run start           # Run production build locally
+npm run lint            # ESLint (must pass clean before merging)
+npm run generate:types  # Regenerate payload/payload-types.ts from live DB schema
 ```
 
-ESLint warnings are non-blocking on Vercel (`eslint.ignoreDuringBuilds: true` in `next.config.ts`).
+### Payload type generation
+
+After changing any collection schema in `payload/collections/`, regenerate the TypeScript types:
+
+```bash
+# Requires DATABASE_URI to point at a live Payload DB
+npm run generate:types
+```
+
+This overwrites `payload/payload-types.ts`. Commit the updated file alongside your schema change.

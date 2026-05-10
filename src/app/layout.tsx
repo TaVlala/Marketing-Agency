@@ -1,12 +1,16 @@
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? '';
+if (!siteUrl.startsWith('http')) {
+  console.warn(
+    '[layout.tsx] NEXT_PUBLIC_SITE_URL is not set — OG/canonical URLs will fall back to https://hgmarketing.com. ' +
+    'Set this env var in Vercel for correct metadata.'
+  );
+}
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    (process.env.NEXT_PUBLIC_SITE_URL ?? '').startsWith('http')
-      ? process.env.NEXT_PUBLIC_SITE_URL!
-      : 'https://hgmarketing.com'
-  ),
+  metadataBase: new URL(siteUrl.startsWith('http') ? siteUrl : 'https://hgmarketing.com'),
   title: {
     default: 'HGM · Hidden Gem Marketing',
     template: '%s | HGM · Hidden Gem Marketing',

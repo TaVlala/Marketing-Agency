@@ -12,12 +12,25 @@ const FORMSPREE_URL = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || '';
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
 export default function ContactForm() {
   const [status, setStatus] = useState<FormStatus>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+  const [emailError, setEmailError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Manual email validation (noValidate suppresses browser bubbles)
+    const form = e.currentTarget;
+    const emailVal = (form.elements.namedItem('email') as HTMLInputElement)?.value ?? '';
+    if (!EMAIL_RE.test(emailVal)) {
+      setEmailError('Please enter a valid email address.');
+      return;
+    }
+    setEmailError('');
+
     if (!FORMSPREE_URL) {
       setStatus('error');
       setErrorMsg('Contact form not configured yet. Please email us directly.');
@@ -25,7 +38,6 @@ export default function ContactForm() {
     }
 
     setStatus('loading');
-    const form = e.currentTarget;
     const data = new FormData(form);
 
     try {
@@ -92,8 +104,14 @@ export default function ContactForm() {
           autoComplete="email"
           placeholder="jane@organisation.com"
           disabled={status === 'loading'}
-          className="w-full px-4 py-3 bg-white border border-neutral-200 text-primary placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent disabled:opacity-60 text-sm"
+          aria-describedby={emailError ? 'email-error' : undefined}
+          aria-invalid={emailError ? 'true' : undefined}
+          onChange={() => emailError && setEmailError('')}
+          className={`w-full px-4 py-3 bg-white border text-primary placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent disabled:opacity-60 text-sm ${emailError ? 'border-red-400' : 'border-neutral-200'}`}
         />
+        {emailError && (
+          <p id="email-error" role="alert" className="text-red-600 text-xs mt-1">{emailError}</p>
+        )}
       </div>
 
       {/* Organisation */}

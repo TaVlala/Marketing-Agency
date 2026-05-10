@@ -3,7 +3,7 @@ import Image from 'next/image';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionHeader from '@/components/ui/SectionHeader';
 import CTABanner from '@/components/sections/CTABanner';
-import { getTeamMembers, getSiteSettings } from '@/lib/payload';
+import { getTeamMembers, getSiteSettings, safeFetch } from '@/lib/payload';
 import type { SiteSettings, TeamMember } from '@payload/payload-types';
 
 export const metadata: Metadata = {
@@ -18,14 +18,10 @@ const fallbackSettings: SiteSettings = {
   createdAt: '', updatedAt: '',
 };
 
-async function safeFetch<T>(fn: () => Promise<T>, fallback: T): Promise<T> {
-  try { return await fn(); } catch { return fallback; }
-}
-
 export default async function AboutPage() {
   const [settings, team] = await Promise.all([
-    safeFetch(getSiteSettings, fallbackSettings),
-    safeFetch(getTeamMembers, [] as TeamMember[]),
+    safeFetch(getSiteSettings, fallbackSettings, 'getSiteSettings'),
+    safeFetch(getTeamMembers, [] as TeamMember[], 'getTeamMembers'),
   ]);
 
   return (

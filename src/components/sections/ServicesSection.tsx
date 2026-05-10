@@ -1,6 +1,7 @@
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Button from '@/components/ui/Button';
+import { sanitizeSvg } from '@/lib/sanitize';
 import type { Service } from '@payload/payload-types';
 
 interface ServicesSectionProps {
@@ -58,7 +59,7 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
                 {/* Icon */}
                 <div className="text-accent group-hover:text-white transition-colors duration-300 mb-6">
                   {service.icon ? (
-                    <span dangerouslySetInnerHTML={{ __html: service.icon }} />
+                    <span dangerouslySetInnerHTML={{ __html: sanitizeSvg(service.icon) }} />
                   ) : (
                     defaultIcons[i % defaultIcons.length]
                   )}

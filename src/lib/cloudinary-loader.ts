@@ -15,5 +15,11 @@ export default function cloudinaryLoader({ src, width, quality }: CloudinaryLoad
   }
 
   const q = quality || 'auto';
-  return `https://res.cloudinary.com/${cloudName}/image/upload/f_auto,q_${q},w_${width}/${src}`;
+  // Encode each path segment individually so folder paths (containing /)
+  // are preserved while special characters in filenames are escaped.
+  const encodedSrc = src
+    .split('/')
+    .map(segment => encodeURIComponent(segment))
+    .join('/');
+  return `https://res.cloudinary.com/${cloudName}/image/upload/f_auto,q_${q},w_${width}/${encodedSrc}`;
 }

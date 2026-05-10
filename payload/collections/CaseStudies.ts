@@ -55,6 +55,9 @@ export const CaseStudies: CollectionConfig = {
       admin: { description: '1 key stat or sentence — visually highlighted on the card.' },
     },
     {
+      // NOTE: Tags are a hardcoded select for now (4 fixed values).
+      // If taxonomy grows or tags need to be shared across collections,
+      // migrate to a separate Tags collection with a relationship field here.
       name: 'tags',
       type: 'select',
       hasMany: true,

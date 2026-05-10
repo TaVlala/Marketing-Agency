@@ -1,6 +1,11 @@
 /**
- * Payload CMS generated types — hand-maintained to match payload.config.ts collections.
- * Regenerate by running: npx payload generate:types (requires DB connection).
+ * Payload CMS generated types.
+ *
+ * After changing any collection schema in payload/collections/, regenerate with:
+ *   npm run generate:types
+ * (Requires a live DB connection via DATABASE_URI env var.)
+ *
+ * Do NOT hand-edit this file — changes will be overwritten on next generation.
  */
 
 export interface Config {
@@ -23,6 +28,8 @@ export interface Config {
 export interface User {
   id: string;
   email: string;
+  name: string;
+  role: 'admin' | 'editor';
   createdAt: string;
   updatedAt: string;
 }

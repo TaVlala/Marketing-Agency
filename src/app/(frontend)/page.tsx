@@ -1,5 +1,5 @@
 import HeroSection from '@/components/HeroSection';
-import ContactForm from '@/components/ContactForm';
+import HomeContactSection from '@/components/sections/HomeContactSection';
 
 export const metadata = {
   title: 'HGM · Hidden Gem Marketing — Investment Promotion. Marketing. Redefined.',
@@ -124,7 +124,7 @@ export default function HomePage() {
           </div>
 
           <div className="contact__grid">
-            <ContactForm />
+            <HomeContactSection />
           </div>
         </div>
       </section>

@@ -1,25 +1,18 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import { trackEvent } from '@/lib/analytics';
+import { subscribeToMailchimp } from '@/lib/mailchimp';
 
-/**
- * Mailchimp embedded form endpoint.
- * Use the full action URL from your Mailchimp embed form code:
- *   Audience → Signup forms → Embedded forms → copy the <form action="..."> URL
- *
- * Set NEXT_PUBLIC_MAILCHIMP_URL in your .env.local
- */
 const MAILCHIMP_URL = process.env.NEXT_PUBLIC_MAILCHIMP_URL || '';
 
 export default function SubscribeSection() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
-  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!MAILCHIMP_URL) {
       setStatus('error');
@@ -28,34 +21,16 @@ export default function SubscribeSection() {
     }
 
     setStatus('loading');
+    const result = await subscribeToMailchimp(MAILCHIMP_URL, email);
 
-    // Mailchimp's embedded form uses a hidden iframe to prevent page redirect
-    const url = new URL(MAILCHIMP_URL.replace('/post?', '/post-json?'));
-    url.searchParams.set('EMAIL', email);
-    url.searchParams.set('c', 'mailchimpCallback');
-
-    // Inject a global callback for JSONP-style response
-    (window as Window & { mailchimpCallback?: (data: { result: string; msg: string }) => void }).mailchimpCallback = (data: { result: string; msg: string }) => {
-      if (data.result === 'success') {
-        setStatus('success');
-        setMessage('You&rsquo;re on the list. We&rsquo;ll be in touch.');
-        setEmail('');
-        trackEvent('Subscribe Form Submitted');
-      } else {
-        setStatus('error');
-        setMessage(data.msg.includes('already') ? 'That email is already subscribed.' : 'Something went wrong. Please try again.');
-      }
-      delete (window as Window & { mailchimpCallback?: (data: { result: string; msg: string }) => void }).mailchimpCallback;
-    };
-
-    const script = document.createElement('script');
-    script.src = url.toString();
-    script.onerror = () => {
+    if (result.success) {
+      setStatus('success');
+      setEmail('');
+      trackEvent('Subscribe Form Submitted');
+    } else {
       setStatus('error');
-      setMessage('Unable to subscribe. Please try again.');
-    };
-    document.body.appendChild(script);
-    setTimeout(() => script.remove(), 5000);
+      setMessage(result.message);
+    }
   };
 
   return (
@@ -78,12 +53,7 @@ export default function SubscribeSection() {
                 ✓ You&rsquo;re on the list. We&rsquo;ll be in touch.
               </p>
             ) : (
-              <form
-                ref={formRef}
-                onSubmit={handleSubmit}
-                className="flex flex-col sm:flex-row gap-3"
-                noValidate
-              >
+              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3" noValidate>
                 <input
                   type="email"
                   value={email}
@@ -104,7 +74,7 @@ export default function SubscribeSection() {
             )}
 
             {status === 'error' && message && (
-              <p className="text-red-600 text-sm mt-3">{message}</p>
+              <p role="alert" className="text-red-600 text-sm mt-3">{message}</p>
             )}
 
             <p className="text-xs text-neutral-400 mt-4">
