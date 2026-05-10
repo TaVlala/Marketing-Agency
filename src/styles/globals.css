@@ -332,14 +332,16 @@ button { font: inherit; cursor: pointer; }
   border-bottom: 1px solid rgba(245,240,225,0.18);
 }
 .footer__brand-block { display: grid; gap: 14px; }
-/* Three nav columns sit inside a flex wrapper so their inter-column
-   spacing is self-contained and perfectly even regardless of content length */
+/* Three nav columns: each sized to its natural content width, with
+   justify-content: space-between so the space *between* columns is
+   equal regardless of how much text each column contains */
 .footer__nav-cols {
   display: flex;
-  gap: 56px;
+  justify-content: space-between;
+  gap: 32px; /* minimum gap at narrow viewports */
 }
 .footer__nav-cols > div {
-  flex: 1;
+  flex: 0 1 auto; /* natural width, can shrink, won't grow */
   min-width: 0;
 }
 .footer__monogram {
