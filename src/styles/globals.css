@@ -488,7 +488,7 @@ button { font: inherit; cursor: pointer; }
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
-  gap: clamp(40px, 6vh, 80px);
+  gap: clamp(20px, 3.5vh, 48px);
 }
 .hero__category {
   font-family: var(--sans);
@@ -532,8 +532,8 @@ button { font: inherit; cursor: pointer; }
   display: grid;
   grid-template-columns: 320px 1fr;
   gap: 80px;
-  margin-top: clamp(36px, 6vh, 72px);
-  padding-top: 32px;
+  margin-top: clamp(16px, 2vh, 28px);
+  padding-top: 20px;
   border-top: 2px solid var(--navy);
   align-items: start;
 }
@@ -564,7 +564,7 @@ button { font: inherit; cursor: pointer; }
   max-width: 720px;
 }
 .hero__sub-lede em { font-style: italic; color: var(--teal); }
-.hero__cta-row { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 36px; justify-content: center; }
+.hero__cta-row { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 20px; justify-content: center; }
 .hero__scroll {
   position: absolute;
   left: 50%;
