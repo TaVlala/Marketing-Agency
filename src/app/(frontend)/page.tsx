@@ -43,23 +43,23 @@ export default function HomePage() {
           <div className="about__pillars">
             <div className="pillar reveal">
               <div className="pillar__num">01 — Principle</div>
-              <h3 className="pillar__title">Senior <em>always</em>.</h3>
-              <p className="pillar__body">No junior teams, no handoffs. The people you meet are the people on the work.</p>
+              <h3 className="pillar__title">IPA <em>insiders</em>.</h3>
+              <p className="pillar__body">A decade inside investment promotion. We speak fluent board, KPI, and ministerial review.</p>
             </div>
             <div className="pillar reveal" style={{ '--rd': '100ms' } as React.CSSProperties}>
               <div className="pillar__num">02 — Principle</div>
-              <h3 className="pillar__title">IPA <em>insiders</em>.</h3>
-              <p className="pillar__body">A decade inside investment promotion. We speak fluent board, KPI, and ministerial review.</p>
+              <h3 className="pillar__title">Context before <em>methodology</em>.</h3>
+              <p className="pillar__body">We arrive with questions, not a playbook. Your mandate, your market, and your constraints shape everything we build.</p>
             </div>
             <div className="pillar reveal" style={{ '--rd': '200ms' } as React.CSSProperties}>
               <div className="pillar__num">03 — Principle</div>
               <h3 className="pillar__title">Strategy <em>+</em> execution.</h3>
-              <p className="pillar__body">One partner across the full arc — positioning to campaign to performance.</p>
+              <p className="pillar__body">We connect the investment story to the channels, campaigns, and conversations that actually reach investors.</p>
             </div>
             <div className="pillar reveal" style={{ '--rd': '300ms' } as React.CSSProperties}>
               <div className="pillar__num">04 — Principle</div>
-              <h3 className="pillar__title">Tailored, <em>not templated</em>.</h3>
-              <p className="pillar__body">Every IPA is shaped by its mandate, market, and moment. Scoped from the brief, never the boilerplate.</p>
+              <h3 className="pillar__title">Long game, <em>by design</em>.</h3>
+              <p className="pillar__body">FDI decisions take years. We build marketing that works on that timeline — not against it.</p>
             </div>
           </div>
         </div>
