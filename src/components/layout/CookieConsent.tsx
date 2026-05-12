@@ -100,7 +100,7 @@ export default function CookieConsent() {
     <div
       role="dialog"
       aria-label="Cookie consent"
-      className="fixed bottom-0 left-0 right-0 z-50 bg-primary text-white px-6 py-5 md:px-12"
+      className="fixed bottom-0 left-0 right-0 z-50 bg-[#0a0f1e]/90 backdrop-blur-md border-t border-white/10 text-white px-6 py-5 md:px-12"
     >
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <p className="text-sm text-neutral-200 max-w-2xl leading-relaxed">
