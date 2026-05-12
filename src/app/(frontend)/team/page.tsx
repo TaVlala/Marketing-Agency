@@ -13,26 +13,15 @@ export default function TeamPage() {
       <header className="team-hero">
         <div className="team-hero__inner">
           <div className="team-hero__masthead">
-            <span>HGM &nbsp;·&nbsp; The Team</span>
-            <em>Vol. 02 — Boutique. Senior. Always.</em>
-            <span>Hidden Gem Marketing / 2026</span>
+<span>Hidden Gem Marketing / 2026</span>
           </div>
 
-          <div>
-            <div className="team-hero__category"><span className="bar"></span>Section 02 — The People</div>
-            <h1 className="team-hero__title">The <em>people</em><br />on the work<span className="stop">.</span></h1>
-          </div>
-
-          <div>
+          <div className="team-hero__full">
+            <div className="team-hero__category"><span className="bar"></span>01 — What is HGM</div>
+            <h1 className="team-hero__title">Built to make great <em>locations</em> visible<span className="stop">.</span></h1>
             <p className="team-hero__lede">
-              HGM is built on a simple promise — <em>the senior partners you meet are the people on the work</em>. No layered teams, no junior handoffs.
+              Every investment destination has a story worth telling. We started HGM because we&apos;ve seen what happens when that story lands with the right audience.
             </p>
-            <dl className="team-hero__meta">
-              <div><dt>Founded</dt><dd>2026</dd></div>
-              <div><dt>Partners</dt><dd>Two founders</dd></div>
-              <div><dt>Sector</dt><dd>Investment promotion</dd></div>
-              <div><dt>Engagement model</dt><dd>A few partners at a time</dd></div>
-            </dl>
           </div>
         </div>
       </header>
@@ -41,8 +30,8 @@ export default function TeamPage() {
       <section className="team-section">
         <div className="team-section__inner">
           <div className="team__head">
-            <span className="team__head-num">— 01 / The Partners</span>
-            <h2 className="team__head-title">A small senior team, <em>by design</em>.</h2>
+            <span className="team__head-num">02 — The Team</span>
+            <h2 className="team__head-title">Insider knowledge. <em>Outside perspective.</em></h2>
           </div>
 
           <div className="team__grid">
@@ -148,7 +137,6 @@ export default function TeamPage() {
         <div className="team-cta__inner">
           <div>
             <h2 className="team-cta__title">Want to meet <em>the team</em>?</h2>
-            <div className="team-cta__sub">— Start with a no-commitment discovery call.</div>
           </div>
           <Link href="/#contact" className="team-cta__btn">
             Start a conversation <span className="arrow">→</span>

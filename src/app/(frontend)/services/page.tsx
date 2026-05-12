@@ -123,7 +123,7 @@ export default function ServicesPage() {
           <div className="process__head reveal">
             <h2 className="process__title">How we <em>work</em>.</h2>
             <p className="process__intro">
-              A six-phase engagement, scoped to each IPA. Every engagement begins with a no-commitment discovery call.
+              A six-phase engagement, scoped to each IPA.
             </p>
           </div>
 
@@ -201,7 +201,6 @@ export default function ServicesPage() {
         <div className="work-cta__inner">
           <div>
             <h2 className="work-cta__title">Ready to <em>start</em>?</h2>
-            <div className="work-cta__sub">— Begin with a no-commitment discovery call.</div>
           </div>
           <Link href="/#contact" className="work-cta__btn">Start a conversation <span className="arrow">→</span></Link>
         </div>

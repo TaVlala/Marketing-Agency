@@ -150,7 +150,6 @@ export default function WorkPage() {
         <div className="work-cta__inner">
           <div>
             <h2 className="work-cta__title">Ready to be <em>next</em>?</h2>
-            <div className="work-cta__sub">— Start with a no-commitment discovery call.</div>
           </div>
           <Link href="/#contact" className="work-cta__btn">Start a conversation <span className="arrow">→</span></Link>
         </div>

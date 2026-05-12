@@ -1390,13 +1390,14 @@ button { font: inherit; cursor: pointer; }
 /* ================================================================
    TEAM PAGE
    ================================================================ */
-.team-hero { position: relative; padding: clamp(140px, 22vh, 220px) var(--gutter) clamp(80px, 12vh, 140px); border-bottom: 1px solid var(--rule); z-index: 2; }
-.team-hero__inner { max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(48px, 8vw, 120px); align-items: end; }
-.team-hero__masthead { grid-column: 1 / -1; display: flex; justify-content: space-between; font-family: var(--sans); font-size: 13px; color: var(--muted); letter-spacing: 0.04em; border-bottom: 1px solid var(--rule); padding-bottom: 14px; margin-bottom: clamp(40px, 7vh, 80px); }
+.team-hero { position: relative; padding: clamp(140px, 22vh, 220px) var(--gutter) clamp(32px, 4vh, 56px); border-bottom: 1px solid var(--rule); z-index: 2; }
+.team-hero__inner { max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(48px, 8vw, 120px); row-gap: clamp(24px, 3vh, 40px); align-items: end; }
+.team-hero__full { grid-column: 1 / -1; }
+.team-hero__masthead { grid-column: 1 / -1; display: flex; justify-content: space-between; font-family: var(--sans); font-size: 13px; color: var(--muted); letter-spacing: 0.04em; border-bottom: 1px solid var(--rule); padding-bottom: 14px; margin-bottom: 0; }
 .team-hero__masthead em { font-family: var(--display); font-style: italic; color: var(--ink-2); font-size: 15px; }
 .team-hero__category { font-family: var(--sans); font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); display: inline-flex; align-items: center; gap: 14px; margin-bottom: 28px; font-weight: 500; }
 .team-hero__category .bar { width: 48px; height: 1px; background: var(--gold); }
-.team-hero__title { font-family: var(--display); font-weight: 300; font-size: clamp(64px, 9vw, 156px); line-height: 0.94; letter-spacing: -0.035em; color: var(--navy); margin: 0; font-variation-settings: "opsz" 144; }
+.team-hero__title { font-family: var(--display); font-weight: 300; font-size: clamp(50px, 6.9vw, 120px); line-height: 0.94; letter-spacing: -0.035em; color: var(--navy); margin: 0; font-variation-settings: "opsz" 144; }
 .team-hero__title em { font-style: italic; color: var(--teal); }
 .team-hero__title .stop { color: var(--gold); font-style: normal; }
 .team-hero__lede { font-family: var(--display); font-weight: 300; font-size: clamp(20px, 1.6vw, 26px); line-height: 1.45; color: var(--ink-2); max-width: 520px; font-variation-settings: "opsz" 24; }
@@ -1408,8 +1409,9 @@ button { font: inherit; cursor: pointer; }
 .team-section { padding: clamp(80px, 12vh, 140px) var(--gutter); position: relative; z-index: 2; }
 .team-section__inner { max-width: var(--maxw); margin: 0 auto; }
 .team__head { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid var(--navy); padding-bottom: 14px; margin-bottom: clamp(48px, 7vh, 80px); gap: 40px; }
-.team__head-num { font-family: var(--display); font-style: italic; font-size: 15px; color: var(--gold); }
-.team__head-title { font-family: var(--display); font-weight: 400; font-size: clamp(28px, 3vw, 44px); letter-spacing: -0.015em; color: var(--navy); margin: 0; }
+.team__head-num { font-family: var(--sans); font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); display: inline-flex; align-items: center; gap: 14px; font-weight: 500; }
+.team__head-num::before { content: ''; width: 48px; height: 1px; background: var(--gold); display: inline-block; flex-shrink: 0; }
+.team__head-title { font-family: var(--display); font-weight: 400; font-size: clamp(24px, 2.55vw, 37px); letter-spacing: -0.015em; color: var(--navy); margin: 0; }
 .team__head-title em { font-style: italic; color: var(--teal); }
 .team__head-aside { font-family: var(--sans); font-size: 13px; color: var(--muted); text-align: right; }
 .team__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(24px, 4vw, 64px); }
@@ -1577,7 +1579,7 @@ button { font: inherit; cursor: pointer; }
   /* Team page */
   .team-hero { padding: clamp(110px, 18vh, 160px) var(--gutter) clamp(56px, 9vh, 100px); }
   .team-hero__masthead { flex-direction: column; gap: 8px; align-items: flex-start; font-size: 11px; }
-  .team-hero__title { font-size: clamp(48px, 14vw, 84px); }
+  .team-hero__title { font-size: clamp(37px, 10.8vw, 65px); }
   .team-hero__lede { font-size: 18px; }
   .team-section { padding: clamp(64px, 9vh, 100px) var(--gutter); }
   .team__head-title { font-size: 26px; }

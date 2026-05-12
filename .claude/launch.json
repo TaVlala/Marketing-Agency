@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "marketing-frontend",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeExecutable": "C:\\nvm4w\\nodejs\\node.exe",
+      "runtimeArgs": ["C:\\nvm4w\\nodejs\\node_modules\\npm\\bin\\npm-cli.js", "run", "dev"],
       "port": 3000
     }
   ]
