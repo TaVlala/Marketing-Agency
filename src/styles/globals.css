@@ -1412,12 +1412,13 @@ button { font: inherit; cursor: pointer; }
 .team__head-title { font-family: var(--display); font-weight: 400; font-size: clamp(28px, 3vw, 44px); letter-spacing: -0.015em; color: var(--navy); margin: 0; }
 .team__head-title em { font-style: italic; color: var(--teal); }
 .team__head-aside { font-family: var(--sans); font-size: 13px; color: var(--muted); text-align: right; }
-.team__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(40px, 5vw, 80px); }
+.team__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(24px, 4vw, 64px); }
 
 .member { display: grid; grid-template-columns: 1fr; gap: 28px; }
 .member__portrait { position: relative; aspect-ratio: 4 / 5; background: linear-gradient(155deg, var(--navy-mid) 0%, var(--navy-deep) 100%); overflow: hidden; }
 .member__portrait::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 28%, rgba(0,106,103,0.32), transparent 62%), radial-gradient(ellipse at 78% 82%, rgba(184,146,76,0.18), transparent 60%); }
 .member__portrait::after { content: ""; position: absolute; inset: 0; background-image: var(--grain); background-size: 220px 220px; opacity: 0.35; mix-blend-mode: overlay; }
+.member__photo-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; z-index: 1; }
 .member__initials { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 300; color: rgba(245,240,225,0.92); font-size: clamp(96px, 12vw, 180px); letter-spacing: -0.03em; font-variation-settings: "opsz" 144; font-style: italic; z-index: 2; }
 .member__initials .stop { color: var(--gold-soft); font-style: normal; }
 .member__photo-tag { position: absolute; left: 18px; bottom: 18px; z-index: 2; font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,240,225,0.7); display: flex; align-items: center; gap: 10px; }
@@ -1459,7 +1460,8 @@ button { font: inherit; cursor: pointer; }
 .team-cta__btn:hover .arrow { transform: translateX(4px); }
 
 @media (max-width: 880px) { .principles__inner { grid-template-columns: 1fr; gap: 40px; } }
-@media (max-width: 760px) { .team-hero__inner { grid-template-columns: 1fr; gap: 40px; } .team-hero__meta { grid-template-columns: 1fr; gap: 18px; } .team__grid { grid-template-columns: 1fr; gap: 64px; } .team__head { flex-wrap: wrap; } .team__head-aside { display: none; } .team-cta__inner { grid-template-columns: 1fr; gap: 32px; } }
+@media (max-width: 960px) { .team__grid { grid-template-columns: 1fr; gap: 64px; } .team__head-aside { display: none; } }
+@media (max-width: 760px) { .team-hero__inner { grid-template-columns: 1fr; gap: 40px; } .team-hero__meta { grid-template-columns: 1fr; gap: 18px; } .team__head { flex-wrap: wrap; } .team-cta__inner { grid-template-columns: 1fr; gap: 32px; } }
 
 /* ================================================================
    GLOBAL RESPONSIVE
