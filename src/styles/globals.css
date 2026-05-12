@@ -442,7 +442,7 @@ button { font: inherit; cursor: pointer; }
 .hero {
   position: relative;
   min-height: 100svh;
-  padding: clamp(120px, 18vh, 200px) var(--gutter) 32px;
+  padding: clamp(140px, 22vh, 240px) var(--gutter) 32px;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   align-content: space-between;
@@ -488,7 +488,7 @@ button { font: inherit; cursor: pointer; }
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
-  gap: clamp(20px, 3.5vh, 48px);
+  gap: clamp(28px, 5vh, 64px);
 }
 .hero__category {
   font-family: var(--sans);
@@ -497,14 +497,14 @@ button { font: inherit; cursor: pointer; }
   text-transform: uppercase;
   color: var(--gold);
   display: inline-flex; align-items: center; gap: 14px;
-  margin-bottom: 28px;
+  margin-bottom: 48px;
   font-weight: 500;
 }
 .hero__category .bar { width: 56px; height: 1px; background: var(--gold); }
 .hero__title {
   font-family: var(--display);
   font-weight: 300;
-  font-size: clamp(48px, 8.25vw, 150px);
+  font-size: clamp(41px, 7vw, 128px);
   line-height: 0.92;
   letter-spacing: -0.035em;
   color: var(--navy);
@@ -532,8 +532,8 @@ button { font: inherit; cursor: pointer; }
   display: grid;
   grid-template-columns: 320px 1fr;
   gap: 80px;
-  margin-top: clamp(16px, 2vh, 28px);
-  padding-top: 20px;
+  margin-top: clamp(24px, 3.5vh, 44px);
+  padding-top: 28px;
   border-top: 2px solid var(--navy);
   align-items: start;
 }
@@ -564,7 +564,7 @@ button { font: inherit; cursor: pointer; }
   max-width: 720px;
 }
 .hero__sub-lede em { font-style: italic; color: var(--teal); }
-.hero__cta-row { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 20px; justify-content: center; }
+.hero__cta-row { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 32px; justify-content: center; }
 .hero__scroll {
   position: absolute;
   left: 50%;
@@ -721,7 +721,7 @@ button { font: inherit; cursor: pointer; }
 .section__title {
   font-family: var(--display);
   font-weight: 400;
-  font-size: clamp(48px, 6.5vw, 110px);
+  font-size: clamp(41px, 5.5vw, 94px);
   line-height: 0.95; letter-spacing: -0.025em;
   color: var(--navy); margin: 0;
   font-variation-settings: "opsz" 144;
@@ -1156,7 +1156,7 @@ button { font: inherit; cursor: pointer; }
   padding-bottom: 0;
 }
 .contact .section__head .section__title {
-  font-size: clamp(56px, 7.5vw, 120px);
+  font-size: clamp(48px, 6.4vw, 102px);
 }
 .contact__grid {
   display: grid; grid-template-columns: 1fr 1fr;
@@ -1296,7 +1296,7 @@ button { font: inherit; cursor: pointer; }
 .work-hero__category .bar { width: 48px; height: 1px; background: var(--gold); }
 .work-hero__title {
   font-family: var(--display); font-weight: 300;
-  font-size: clamp(64px, 9vw, 156px); line-height: 0.94;
+  font-size: clamp(54px, 7.65vw, 133px); line-height: 0.94;
   letter-spacing: -0.035em; color: var(--navy);
   margin: 0; font-variation-settings: "opsz" 144;
 }
