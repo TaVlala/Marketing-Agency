@@ -28,18 +28,13 @@ export default function HomePage() {
           <div className="about__grid">
             <div className="reveal">
               <p className="about__lede">
-                HGM is a <em>boutique</em> marketing consultancy built for the investment promotion sector — a few partners at a time, <strong>senior attention always</strong>.
+                HGM is a <em>boutique</em> marketing consultancy built for the investment promotion sector.
               </p>
-              <div className="about__signature">
-                — Founders&apos; note
-                <strong>Less, but better.</strong>
-              </div>
             </div>
 
             <div className="about__body reveal" style={{ '--rd': '160ms' } as React.CSSProperties}>
               <p>We are former IPA insiders, marketing strategists, and brand specialists who have spent the last decade inside the investment promotion machine. We know how IPAs are funded, how boards measure success, how briefs get written, and how the work actually lands on the desks of investors.</p>
-              <p>So we built the agency we wished existed when we were on the other side: small, senior, accountable, and willing to challenge the brief when the brief is wrong.</p>
-              <p>We do not chase scale. We chase outcomes — for a small number of agencies, a few engagements at a time.</p>
+              <p>So we built the agency we wished existed when we were on the other side.</p>
             </div>
           </div>
 

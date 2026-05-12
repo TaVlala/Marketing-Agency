@@ -79,7 +79,7 @@ export default function HomeContactSection() {
     <>
       <div className="reveal">
         <p className="contact__lede">
-          If your agency is <strong>ready</strong> to raise its profile, sharpen its brand, and attract the <em>investors it deserves</em> — start here.
+          Are you ready to take your brand to the <em>next level?</em> Reach out.
         </p>
 
         <div className="about__signature" style={{ marginTop: 48 }}>

@@ -770,14 +770,6 @@ button { font: inherit; cursor: pointer; }
   font-size: 18px; line-height: 1.65;
   color: var(--ink-2); margin: 0; font-weight: 400;
 }
-.about__body p:first-child::first-letter {
-  font-family: var(--display);
-  font-weight: 400; font-size: 88px;
-  line-height: 0.85; float: left;
-  margin: 6px 14px 0 0;
-  color: var(--navy); font-style: italic;
-  font-variation-settings: "opsz" 144;
-}
 .about__signature {
   margin-top: 36px; padding-top: 28px;
   border-top: 1px solid var(--rule);
@@ -1184,7 +1176,7 @@ button { font: inherit; cursor: pointer; }
   line-height: 1.6; color: var(--ink-2);
   font-weight: 400; max-width: 480px;
 }
-.form { display: grid; gap: 0; border-top: 1px solid var(--rule); }
+.form { display: grid; gap: 0; border: 1px solid var(--rule); background: var(--paper-2); padding: 0 28px 28px; }
 .field {
   display: grid; grid-template-columns: 160px 1fr;
   align-items: center; gap: 20px;
@@ -1215,7 +1207,7 @@ button { font: inherit; cursor: pointer; }
   line-height: 1.55; color: var(--ink-2);
 }
 .field:focus-within .field__label { color: var(--navy); }
-.field:focus-within { background: var(--paper-2); }
+.field:focus-within { background: var(--paper-3); }
 .form__submit { margin-top: 32px; display: flex; justify-content: flex-end; }
 .form__newsletter {
   grid-column: 1 / -1;
@@ -1269,6 +1261,7 @@ button { font: inherit; cursor: pointer; }
 }
 @media (max-width: 700px) {
   .field { grid-template-columns: 1fr; gap: 6px; padding: 16px 0; }
+  .form { padding: 0 16px 20px; }
   .field__label { font-size: 12px; }
   .newsletter-form { flex-direction: column; border-radius: 12px; }
   .newsletter-form input { width: 100%; }
@@ -1512,7 +1505,6 @@ button { font: inherit; cursor: pointer; }
   /* About */
   .about__lede, .contact__lede { font-size: 28px; }
   .about__body p { font-size: 16px; }
-  .about__body p:first-child::first-letter { font-size: 60px; margin: 4px 10px 0 0; }
   .about__signature strong { font-size: 20px; }
   .about__pillars { margin-top: 56px; }
   .pillar { padding: 32px 20px 28px 20px; }
