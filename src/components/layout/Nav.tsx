@@ -70,7 +70,7 @@ export default function Nav() {
 
       <div className="nav__links">
         <Link href="/team" className={pathname === '/team' ? 'is-active' : ''}>Who we are</Link>
-        <Link href="/services" className={pathname === '/services' ? 'is-active' : ''}>Services</Link>
+        <Link href="/services" className={pathname === '/services' ? 'is-active' : ''}>How we work</Link>
         <Link href="/work" className={pathname === '/work' ? 'is-active' : ''}>Work</Link>
         <Link href="/#contact" scroll={false} onClick={handleContactClick}>Contact</Link>
       </div>
@@ -93,7 +93,7 @@ export default function Nav() {
       <div className="nav__drawer" aria-hidden={!menuOpen}>
         <div className="nav__drawer-links">
           <Link href="/team" className={pathname === '/team' ? 'is-active' : ''}>Who we are</Link>
-          <Link href="/services" className={pathname === '/services' ? 'is-active' : ''}>Services</Link>
+          <Link href="/services" className={pathname === '/services' ? 'is-active' : ''}>How we work</Link>
           <Link href="/work" className={pathname === '/work' ? 'is-active' : ''}>Work</Link>
           <Link href="/#contact" scroll={false} onClick={handleContactClick}>Contact</Link>
         </div>

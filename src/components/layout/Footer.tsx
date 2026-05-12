@@ -19,7 +19,7 @@ export default function Footer() {
               <div className="footer__col-head">— Navigate</div>
               <ul className="footer__list">
                 <li><Link href="/team">Who we are</Link></li>
-                <li><Link href="/services">Services</Link></li>
+                <li><Link href="/services">How we work</Link></li>
                 <li><Link href="/work">Work</Link></li>
                 <li><Link href="/#contact">Contact</Link></li>
               </ul>
@@ -66,7 +66,6 @@ export default function Footer() {
 
         <div className="footer__bot">
           <div>© 2026 HGM · Hidden Gem Marketing.</div>
-          <div className="center">— Boutique. Senior. Always. —</div>
           <div className="right flex items-center gap-4">
             <span>Investment Promotion. Marketing. Redefined.</span>
             <CookieSettingsButton />
