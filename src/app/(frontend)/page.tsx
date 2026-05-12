@@ -28,13 +28,15 @@ export default function HomePage() {
           <div className="about__grid">
             <div className="reveal">
               <p className="about__lede">
-                HGM is a <em>boutique</em> marketing consultancy built for the investment promotion sector.
+                <span className="about__hgm">HGM</span> is a <em>boutique</em> marketing consultancy built for the investment promotion sector.
+              </p>
+              <p className="about__built">
+                So <strong>we built the agency we wished existed</strong> when we were on the other side.
               </p>
             </div>
 
             <div className="about__body reveal" style={{ '--rd': '160ms' } as React.CSSProperties}>
               <p>We are former IPA insiders, marketing strategists, and brand specialists who have spent the last decade inside the investment promotion machine. We know how IPAs are funded, how boards measure success, how briefs get written, and how the work actually lands on the desks of investors.</p>
-              <p>So we built the agency we wished existed when we were on the other side.</p>
             </div>
           </div>
 

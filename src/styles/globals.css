@@ -762,8 +762,17 @@ button { font: inherit; cursor: pointer; }
   color: var(--navy); margin: 0;
   font-variation-settings: "opsz" 96;
 }
+.about__hgm { font-weight: 600; letter-spacing: -0.01em; color: var(--navy); font-variation-settings: "opsz" 60; }
 .about__lede em { font-style: italic; color: var(--teal); font-weight: 400; }
 .about__lede strong { font-weight: 500; }
+.about__built {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(20px, 2vw, 32px);
+  line-height: 1.35; letter-spacing: -0.01em;
+  color: var(--ink-2); margin: 24px 0 0;
+}
+.about__built strong { font-weight: 400; color: var(--teal); font-style: italic; }
 .about__body { display: grid; gap: 20px; }
 .about__body p {
   font-family: var(--sans);
