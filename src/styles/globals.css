@@ -752,22 +752,22 @@ button { font: inherit; cursor: pointer; }
 .about { background: var(--paper); }
 .about__grid {
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: 96px; align-items: start;
+  gap: 60px; align-items: start;
 }
 .about__lede {
   font-family: var(--display);
   font-weight: 300;
-  font-size: clamp(28px, 3.4vw, 54px);
+  font-size: clamp(22px, 2.4vw, 38px);
   line-height: 1.18; letter-spacing: -0.018em;
   color: var(--navy); margin: 0;
   font-variation-settings: "opsz" 96;
 }
 .about__lede em { font-style: italic; color: var(--teal); font-weight: 400; }
 .about__lede strong { font-weight: 500; }
-.about__body { display: grid; gap: 36px; }
+.about__body { display: grid; gap: 20px; }
 .about__body p {
   font-family: var(--sans);
-  font-size: 18px; line-height: 1.65;
+  font-size: 16px; line-height: 1.6;
   color: var(--ink-2); margin: 0; font-weight: 400;
 }
 .about__signature {
@@ -784,12 +784,12 @@ button { font: inherit; cursor: pointer; }
   color: var(--navy); margin-top: 8px;
 }
 .about__pillars {
-  margin-top: clamp(80px, 12vh, 140px);
+  margin-top: clamp(40px, 6vh, 72px);
   display: grid; grid-template-columns: repeat(4, 1fr);
   gap: 0; border-top: 1px solid var(--rule);
 }
 .pillar {
-  padding: 48px 32px 40px 32px;
+  padding: 32px 24px 28px 24px;
   border-right: 1px solid var(--rule);
   position: relative;
 }
