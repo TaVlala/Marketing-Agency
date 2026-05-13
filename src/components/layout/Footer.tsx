@@ -20,7 +20,6 @@ export default function Footer() {
               <ul className="footer__list">
                 <li><Link href="/team">Who we are</Link></li>
                 <li><Link href="/services">How we work</Link></li>
-                <li><Link href="/work">Work</Link></li>
                 <li><Link href="/#contact">Contact</Link></li>
               </ul>
             </div>

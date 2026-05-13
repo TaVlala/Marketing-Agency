@@ -6,153 +6,125 @@ export const metadata: Metadata = {
   description: 'Six pillars built around the IPA investor journey — from audit and narrative to execution and ongoing advisory.',
 };
 
-export default function ServicesPage() {
+export default function TextPage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────── */}
       <header className="work-hero">
         <div className="work-hero__inner">
           <div className="work-hero__masthead">
+            <span>HGM &nbsp;·&nbsp; Services</span>
             <em>Built around the IPA investor journey.</em>
             <span>Hidden Gem Marketing / 2026</span>
           </div>
 
-          <div className="work-hero__category"><span className="bar"></span>01 — What We Offer</div>
-          <h1 className="work-hero__title">From hidden asset<br />to <em>investment brand</em><span className="stop">.</span></h1>
+          <div className="work-hero__category"><span className="bar"></span>What We Offer</div>
+          <h1 className="work-hero__title">Six pillars<span className="stop">.</span> <em>One</em> partner.</h1>
 
           <div className="work-hero__sub">
-            <p className="work-hero__lede" style={{ gridColumn: '1 / -1', maxWidth: '780px' }}>
-              A full-service menu built around the <em style={{ color: 'var(--gold)' }}>IPA investor journey</em> — from understanding your investment potential to ongoing advisory and execution support.
+            <p className="work-hero__lede">
+              A full-service menu built around the <em>IPA investor journey</em> — from understanding your investment potential to ongoing advisory and execution support.
             </p>
           </div>
         </div>
       </header>
 
-      {/* ── PROCESS FRAMEWORK ────────────────────────────── */}
-      <section className="process" id="process">
-        <div className="process__inner">
-
-          <div className="process__head reveal">
+      {/* ── WHAT WE OFFER ────────────────────────────────── */}
+      <section className="section services" id="services">
+        <div className="services__grid-bg" aria-hidden="true"></div>
+        <div className="section__inner">
+          <div className="section__head reveal">
             <div>
-              <div className="section__num" style={{ marginBottom: '10px' }}><span className="bar"></span>02 — Our Process</div>
-              <p className="process__intro">Six structured stages that take an investment location from unexamined potential to a clear, compelling, investor-ready brand.</p>
+              <div className="section__num"><span className="bar"></span>01 — Capabilities</div>
+              <h2 className="section__title"><span className="light">What</span> <em>we offer</em>.</h2>
+            </div>
+            <div className="section__head-meta">
+              Six pillars
+              <strong>One senior partner.</strong>
             </div>
           </div>
 
-          <div className="process__spine reveal">
-            <div className="process__spine-track">
-              <div className="process__spine-line"></div>
-              <div className="process__nodes">
-                <div className="process__node" data-label="Audit"></div>
-                <div className="process__node" data-label="Narrative"></div>
-                <div className="process__node process__node--mid" data-label="Strategy"></div>
-                <div className="process__node process__node--mid" data-label="Blueprints"></div>
-                <div className="process__node" data-label="Execution"></div>
-                <div className="process__node" data-label="Partners"></div>
-              </div>
-            </div>
-          </div>
-
-          <div className="stages reveal">
-
-            <div className="stage">
-              <div className="stage__num">01</div>
-              <div className="stage__label">Audit</div>
-              <div className="stage__rule"></div>
-              <h3 className="stage__title">Investment <em>Potential</em> Audit</h3>
-              <ul className="stage__items">
-                <li>Landscape &amp; context review</li>
+          <div className="services__grid">
+            <div className="service reveal">
+              <div className="service__num">01<small>Audit</small></div>
+              <h3 className="service__title">Investment Potential<br /><em>Audit</em></h3>
+              <p className="service__obj">Develop a clear, evidence-based understanding of your destination&apos;s investment potential, market position, and current visibility.</p>
+              <ul className="service__list">
+                <li>Investment landscape &amp; context</li>
                 <li>Competitive positioning analysis</li>
+                <li>Investment Readiness Assessment</li>
                 <li>Target investor mapping</li>
                 <li>Visibility &amp; communication gaps</li>
               </ul>
             </div>
-
-            <div className="stage">
-              <div className="stage__num">02</div>
-              <div className="stage__label">Narrative</div>
-              <div className="stage__rule"></div>
-              <h3 className="stage__title">Investment <em>Narrative</em> &amp; Positioning</h3>
-              <ul className="stage__items">
-                <li>Investment vision &amp; story</li>
-                <li>Investment logic model</li>
-                <li>Priority sectors &amp; investor profiles</li>
-                <li>Value proposition canvas</li>
-                <li>Tagline / brand promise</li>
+            <div className="service reveal" style={{ '--rd': '100ms' } as React.CSSProperties}>
+              <div className="service__num">02<small>Narrative</small></div>
+              <h3 className="service__title">Investment Narrative<br /><em>&amp; Positioning</em></h3>
+              <p className="service__obj">Transform insights into a clear, investor-centric narrative that positions your destination competitively in the global investment landscape.</p>
+              <ul className="service__list">
+                <li>Investment Vision &amp; Story</li>
+                <li>Investment Logic Model</li>
+                <li>Priority Sectors &amp; Investor Profiles</li>
+                <li>Investment Value Proposition Canvas</li>
+                <li>Tagline / Investment Brand Promise</li>
               </ul>
             </div>
-
-            <div className="stage">
-              <div className="stage__num">03</div>
-              <div className="stage__label">Strategy</div>
-              <div className="stage__rule"></div>
-              <h3 className="stage__title">Investment <em>Communication</em> Strategy</h3>
-              <ul className="stage__items">
-                <li>Deal-flow engine</li>
+            <div className="service reveal" style={{ '--rd': '200ms' } as React.CSSProperties}>
+              <div className="service__num">03<small>Strategy</small></div>
+              <h3 className="service__title">Investment Communication<br /><em>Strategy</em></h3>
+              <p className="service__obj">Design a structured system to attract, engage, and convert investors using the narrative and positioning defined earlier.</p>
+              <ul className="service__list">
+                <li>Investment Deal Flow Engine</li>
                 <li>Channel &amp; campaign strategy</li>
                 <li>Messaging architecture</li>
                 <li>Investor journey framework</li>
               </ul>
             </div>
-
-            <div className="stage">
-              <div className="stage__num">04</div>
-              <div className="stage__label">Blueprints</div>
-              <div className="stage__rule"></div>
-              <h3 className="stage__title">Execution <em>Blueprints</em></h3>
-              <ul className="stage__items">
+            <div className="service reveal">
+              <div className="service__num">04<small>Blueprints</small></div>
+              <h3 className="service__title">Execution<br /><em>Blueprints</em></h3>
+              <p className="service__obj">Provide clear, actionable instructions for implementation partners and internal teams.</p>
+              <ul className="service__list">
                 <li>Website &amp; digital platforms briefs</li>
                 <li>Design &amp; identity briefs</li>
                 <li>Media &amp; PR briefs</li>
-                <li>Conferences &amp; outreach briefs</li>
+                <li>Conferences &amp; investor outreach briefs</li>
               </ul>
             </div>
-
-            <div className="stage">
-              <div className="stage__num">05</div>
-              <div className="stage__label">Execution</div>
-              <div className="stage__rule"></div>
-              <h3 className="stage__title">Guided <em>Execution</em></h3>
-              <ul className="stage__items">
+            <div className="service reveal" style={{ '--rd': '100ms' } as React.CSSProperties}>
+              <div className="service__num">05<small>Execution</small></div>
+              <h3 className="service__title">Guided<br /><em>Execution</em></h3>
+              <p className="service__obj">Support implementation and ensure the strategy translates into measurable investor engagement.</p>
+              <ul className="service__list">
                 <li>Vendor supervision</li>
                 <li>Campaign optimisation</li>
                 <li>Investor engagement refinement</li>
-                <li>Deal-flow monitoring</li>
+                <li>Deal flow monitoring</li>
               </ul>
             </div>
-
-            <div className="stage">
-              <div className="stage__num">06</div>
-              <div className="stage__label">Partners</div>
-              <div className="stage__rule"></div>
-              <h3 className="stage__title">Access to <em>Execution</em> Partners</h3>
-              <ul className="stage__items">
+            <div className="service reveal" style={{ '--rd': '200ms' } as React.CSSProperties}>
+              <div className="service__num">06<small>Partners</small></div>
+              <h3 className="service__title">Access to Execution<br /><em>Partners</em></h3>
+              <p className="service__obj">We connect you with global media platforms, design studios, and digital agencies aligned with your strategy from day one.</p>
+              <ul className="service__list">
                 <li>Global media platforms</li>
-                <li>Branding &amp; design studios</li>
+                <li>Design &amp; branding studios</li>
                 <li>Digital &amp; campaign agencies</li>
                 <li>Investor-facing content specialists</li>
               </ul>
             </div>
-
           </div>
-
-          <div className="process__output reveal">
-            <div className="process__output-label">The Output</div>
-            <div className="process__output-divider"></div>
-            <div className="process__output-title">A complete <em>investment brand</em><br />and go-to-market plan.</div>
-          </div>
-
         </div>
       </section>
 
-      {/* ── HOW WE WORK — 6 PHASES ───────────────────────── */}
-      <section className="process" id="phases">
+      {/* ── HOW WE WORK ──────────────────────────────────── */}
+      <section className="process" id="process">
         <div className="process__inner">
           <div className="process__head reveal">
-            <div>
-              <div className="section__num" style={{ marginBottom: '10px' }}><span className="bar"></span>03 — How We Work</div>
-<p className="process__intro">A six-phase engagement, scoped to each IPA.</p>
-            </div>
+            <h2 className="process__title">How we <em>work</em>.</h2>
+            <p className="process__intro">
+              A six-phase engagement, scoped to each IPA.
+            </p>
           </div>
 
           <div className="steps">
