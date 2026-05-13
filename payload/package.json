@@ -7,7 +7,7 @@
   },
   "scripts": {
     "build": "payload build",
-    "start": "payload serve",
+    "start": "payload migrate && payload serve",
     "seed": "npx tsx seed.ts"
   },
   "dependencies": {
