@@ -105,33 +105,33 @@ export default function TeamPage() {
 
             <div className="principle">
               <div className="principle__num">i.</div>
-              <h3 className="principle__word">Senior<span className="dot"></span></h3>
+              <h3 className="principle__word">Honest<span className="dot"></span></h3>
               <p className="principle__body">
-                <strong>On the brief. On the work.</strong> Whoever you meet in discovery is on the mandate all the way through delivery. No bait-and-switch, no junior hand-off.
+                <strong>We tell you what you need to hear.</strong> Clear diagnosis before any proposal. No flattery. No inflated scope.
               </p>
             </div>
 
             <div className="principle principle--italic">
               <div className="principle__num">ii.</div>
-              <h3 className="principle__word">Diagnose<span className="dot"></span></h3>
+              <h3 className="principle__word">Curious<span className="dot"></span></h3>
               <p className="principle__body">
-                <strong>Before we propose.</strong> Every engagement begins with a written diagnostic. If we&apos;re not the right fit, we say so on page one — and recommend who is.
+                <strong>We start by not assuming.</strong> Discovery is not a formality. We approach every mandate as if the most important insight hasn&apos;t surfaced yet.
               </p>
             </div>
 
             <div className="principle principle--italic">
               <div className="principle__num">iii.</div>
-              <h3 className="principle__word">Fewer<span className="dot"></span></h3>
+              <h3 className="principle__word">Professional<span className="dot"></span></h3>
               <p className="principle__body">
-                <strong>Deeper partnerships.</strong> We work with a small number of IPAs at a time, so each one gets the senior attention the mandate deserves.
+                <strong>Board-ready by default.</strong> Every output is written to withstand scrutiny — from a minister&apos;s desk to an investor roadshow.
               </p>
             </div>
 
             <div className="principle">
               <div className="principle__num">iv.</div>
-              <h3 className="principle__word">Ready<span className="dot"></span></h3>
+              <h3 className="principle__word">Invested<span className="dot"></span></h3>
               <p className="principle__body">
-                <strong>Board-ready by default.</strong> Every output is written to be read by a minister or non-executive — clear, attributable, and on the record from day one.
+                <strong>We&apos;re not here to deliver a report and move on.</strong> We stay close to the work because we actually want to see the deal flow shift.
               </p>
             </div>
 
