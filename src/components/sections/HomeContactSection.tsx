@@ -77,45 +77,73 @@ export default function HomeContactSection() {
 
   return (
     <>
-      <div className="reveal">
-        <p className="contact__lede">
-          Are you ready to take your brand to the <em>next level?</em> Reach out.
-        </p>
-
-        <div className="about__signature" style={{ marginTop: 48 }}>
-          — Direct line
-          <strong>hello@hgmarketing.com</strong>
+      <div className="contact__body reveal">
+        <div className="contact__left">
+          <p className="contact__pitch">
+            Ready to take your brand<br />to the <em>next level?</em><br />Reach out.
+          </p>
+          <div className="contact__direct">
+            <span className="label">Direct line</span>
+            <a href="mailto:hello@hgmarketing.com">hello@hgmarketing.com</a>
+          </div>
         </div>
+
+        <div className="contact__divider"></div>
+
+        <form className="contact__form" onSubmit={handleContactSubmit}>
+          <div className="field-row">
+            <label className="field-row__label" htmlFor="c-name"><span className="num"></span>Name</label>
+            <div className="field-row__input-wrap">
+              <span className="field-row__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" /></svg>
+              </span>
+              <input id="c-name" name="name" type="text" required disabled={contactStatus === 'loading'} />
+            </div>
+          </div>
+
+          <div className="field-row">
+            <label className="field-row__label" htmlFor="c-org"><span className="num"></span>Organisation</label>
+            <div className="field-row__input-wrap">
+              <span className="field-row__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M3 21V7l8-4 8 4v14" /><path d="M3 21h18" /><path d="M8 11h0M8 15h0M14 11h0M14 15h0" /></svg>
+              </span>
+              <input id="c-org" name="organisation" type="text" required disabled={contactStatus === 'loading'} />
+            </div>
+          </div>
+
+          <div className="field-row">
+            <label className="field-row__label" htmlFor="c-email"><span className="num"></span>Email</label>
+            <div className="field-row__input-wrap">
+              <span className="field-row__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1" /><path d="M3 7l9 6 9-6" /></svg>
+              </span>
+              <input id="c-email" name="email" type="email" required disabled={contactStatus === 'loading'} />
+            </div>
+          </div>
+
+          <div className="field-row field-row--note">
+            <label className="field-row__label" htmlFor="c-note"><span className="num"></span>Your note</label>
+            <div className="field-row__input-wrap">
+              <span className="field-row__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 20l4-1L19 8a2 2 0 0 0 0-2.8L18.8 5a2 2 0 0 0-2.8 0L5 16l-1 4z" /><path d="M14 7l3 3" /></svg>
+              </span>
+              <textarea id="c-note" name="message" rows={2} disabled={contactStatus === 'loading'} />
+            </div>
+          </div>
+
+          {contactStatus === 'error' && contactError && (
+            <p role="alert" style={{ color: '#c00', fontSize: '0.9rem', marginTop: 8 }}>{contactError}</p>
+          )}
+
+          <div className="contact__submit">
+            <button type="submit" className="send-btn" disabled={contactStatus === 'loading' || contactStatus === 'success'}>
+              {contactStatus === 'success' ? 'Sent — talk soon' :
+               contactStatus === 'loading' ? 'Sending…' :
+               <>Send the note <span className="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="13 6 19 12 13 18" /></svg></span></>}
+            </button>
+          </div>
+        </form>
       </div>
-
-      <form className="form reveal" style={{ '--rd': '120ms' } as React.CSSProperties} onSubmit={handleContactSubmit}>
-        <div className="field">
-          <label className="field__label" htmlFor="f-name">Your name</label>
-          <input className="field__input" id="f-name" name="name" type="text" placeholder="Maria Calder" required disabled={contactStatus === 'loading'} />
-        </div>
-        <div className="field">
-          <label className="field__label" htmlFor="f-org">Agency / Org</label>
-          <input className="field__input" id="f-org" name="organisation" type="text" placeholder="Invest in [Country]" required disabled={contactStatus === 'loading'} />
-        </div>
-        <div className="field">
-          <label className="field__label" htmlFor="f-email">Email</label>
-          <input className="field__input" id="f-email" name="email" type="email" placeholder="m.calder@agency.gov" required disabled={contactStatus === 'loading'} />
-        </div>
-        <div className="field field--textarea">
-          <label className="field__label" htmlFor="f-msg">In a sentence</label>
-          <textarea className="field__input" id="f-msg" name="message" placeholder="Where you are, what you're after — a paragraph is plenty." disabled={contactStatus === 'loading'} />
-        </div>
-        {contactStatus === 'error' && contactError && (
-          <p role="alert" style={{ color: '#c00', fontSize: '0.9rem', marginTop: 8 }}>{contactError}</p>
-        )}
-        <div className="form__submit">
-          <button type="submit" className="btn btn--primary" disabled={contactStatus === 'loading' || contactStatus === 'success'}>
-            {contactStatus === 'success' ? 'Sent — talk soon' :
-             contactStatus === 'loading' ? 'Sending…' :
-             <>Send the note <span className="arrow">→</span></>}
-          </button>
-        </div>
-      </form>
 
       <div className="form__newsletter reveal">
         <div>

@@ -112,17 +112,15 @@ export default function HomePage() {
       </section>
 
       {/* ── CONTACT ──────────────────────────────────────── */}
-      <section className="section contact" id="contact">
-        <div className="section__inner">
-          <div className="section__head reveal">
+      <section className="contact" id="contact">
+        <div className="contact__inner">
+          <div className="contact__head reveal">
             <div>
-              <h2 className="section__title"><span className="light">Let&apos;s</span> <em>talk</em>.</h2>
+              <div className="section__num" style={{ marginBottom: '14px' }}><span className="bar"></span>03 — Contact</div>
+              <h2 className="contact__title">Start a <em>conversation</em>.</h2>
             </div>
           </div>
-
-          <div className="contact__grid">
-            <HomeContactSection />
-          </div>
+          <HomeContactSection />
         </div>
       </section>
     </>
