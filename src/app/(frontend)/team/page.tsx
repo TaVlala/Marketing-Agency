@@ -91,45 +91,54 @@ export default function TeamPage() {
       </section>
 
       {/* ── PRINCIPLES ───────────────────────────────────── */}
-      <section className="principles">
+      <section className="principles" id="principles">
         <div className="principles__inner">
+
           <div className="principles__head reveal">
-            <span className="team-hero__category"><span className="bar"></span>Section 02 — How We Work</span>
-            <h2>How we work, <em>day to day</em>.</h2>
-            <p>— A few quiet rules that hold the boutique model together.</p>
+            <div>
+              <div className="section__num" style={{ marginBottom: '10px' }}><span className="bar"></span>03 — Our Principles</div>
+              <h2 className="principles__title">Four quiet <em>commitments</em><br />that decide how we work.</h2>
+            </div>
           </div>
 
-          <ol className="principles__list reveal">
-            <li>
-              <span className="principles__num">i.</span>
-              <div>
-                <h3>Senior on the brief, senior on the work.</h3>
-                <p>Whoever you meet in discovery is on the work all the way through delivery. No bait-and-switch.</p>
-              </div>
-            </li>
-            <li>
-              <span className="principles__num">ii.</span>
-              <div>
-                <h3>Diagnose before we propose.</h3>
-                <p>Every engagement begins with a written diagnostic. If we&apos;re not the right fit, we say so on page one.</p>
-              </div>
-            </li>
-            <li>
-              <span className="principles__num">iii.</span>
-              <div>
-                <h3>Fewer, deeper partnerships.</h3>
-                <p>We work with a small number of IPAs at a time so each gets the attention the mandate deserves.</p>
-              </div>
-            </li>
-            <li>
-              <span className="principles__num">iv.</span>
-              <div>
-                <h3>Board-ready by default.</h3>
-                <p>Every output is written to be read by a minister or non-executive — clear, attributable, and on the record.</p>
-              </div>
-            </li>
-          </ol>
-        </div>
+          <div className="principles__grid reveal">
+
+            <div className="principle">
+              <div className="principle__num">i.</div>
+              <h3 className="principle__word">Senior<span className="dot"></span></h3>
+              <p className="principle__body">
+                <strong>On the brief. On the work.</strong> Whoever you meet in discovery is on the mandate all the way through delivery. No bait-and-switch, no junior hand-off.
+              </p>
+            </div>
+
+            <div className="principle principle--italic">
+              <div className="principle__num">ii.</div>
+              <h3 className="principle__word">Diagnose<span className="dot"></span></h3>
+              <p className="principle__body">
+                <strong>Before we propose.</strong> Every engagement begins with a written diagnostic. If we&apos;re not the right fit, we say so on page one — and recommend who is.
+              </p>
+            </div>
+
+            <div className="principle principle--italic">
+              <div className="principle__num">iii.</div>
+              <h3 className="principle__word">Fewer<span className="dot"></span></h3>
+              <p className="principle__body">
+                <strong>Deeper partnerships.</strong> We work with a small number of IPAs at a time, so each one gets the senior attention the mandate deserves.
+              </p>
+            </div>
+
+            <div className="principle">
+              <div className="principle__num">iv.</div>
+              <h3 className="principle__word">Ready<span className="dot"></span></h3>
+              <p className="principle__body">
+                <strong>Board-ready by default.</strong> Every output is written to be read by a minister or non-executive — clear, attributable, and on the record from day one.
+              </p>
+            </div>
+
+          </div>
+
+
+</div>
       </section>
 
       {/* ── CTA ──────────────────────────────────────────── */}
