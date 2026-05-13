@@ -15,6 +15,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   
   CREATE TABLE "users" (
   	"id" serial PRIMARY KEY NOT NULL,
+  	"name" varchar NOT NULL,
+  	"role" varchar DEFAULT 'editor' NOT NULL,
   	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"email" varchar NOT NULL,
