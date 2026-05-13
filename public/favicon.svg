@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="HGM">
+  
+  <rect x="0" y="0" width="64" height="64" rx="10" fill="#14213D"></rect>
+  
+  <g fill="#F5F0E1">
+    
+    <rect x="13" y="14" width="8" height="36"></rect>
+    
+    <rect x="10" y="14" width="14" height="2.4"></rect>
+    <rect x="10" y="47.6" width="14" height="2.4"></rect>
+    
+    <rect x="43" y="14" width="8" height="36"></rect>
+    
+    <rect x="40" y="14" width="14" height="2.4"></rect>
+    <rect x="40" y="47.6" width="14" height="2.4"></rect>
+    
+    <rect x="21" y="30" width="22" height="4.2"></rect>
+  </g>
+  
+  <g transform="translate(50 50)">
+    <rect x="-4" y="-4" width="8" height="8" transform="rotate(45)" fill="#B8924C"></rect>
+  </g>
+</svg>
