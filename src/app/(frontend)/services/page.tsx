@@ -13,13 +13,12 @@ export default function ServicesPage() {
       <header className="work-hero">
         <div className="work-hero__inner">
           <div className="work-hero__masthead">
-            <span>HGM &nbsp;·&nbsp; Services</span>
             <em>Built around the IPA investor journey.</em>
             <span>Hidden Gem Marketing / 2026</span>
           </div>
 
-          <div className="work-hero__category"><span className="bar"></span>What We Offer</div>
-          <h1 className="work-hero__title">Six pillars<span className="stop">.</span> <em>One</em> partner.</h1>
+          <div className="work-hero__category"><span className="bar"></span>01 — How We Work</div>
+          <h1 className="work-hero__title">From hidden asset<br />to <em>investment brand</em><span className="stop">.</span></h1>
 
           <div className="work-hero__sub">
             <p className="work-hero__lede">
@@ -117,82 +116,157 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ── HOW WE WORK ──────────────────────────────────── */}
-      <section className="process" id="process">
-        <div className="process__inner">
-          <div className="process__head reveal">
-            <h2 className="process__title">How we <em>work</em>.</h2>
-            <p className="process__intro">
-              A six-phase engagement, scoped to each IPA.
-            </p>
+      {/* ── WORK FRAMEWORK ───────────────────────────────── */}
+      <section className="framework" id="process">
+        <div className="framework__inner">
+
+          {/* Header */}
+          <div className="framework__header">
+            <div className="framework__header-left">
+              <div className="framework__eyebrow"><span className="bar"></span>02 — Our Process</div>
+              <h2 className="framework__title">Six structured stages that take an investment location from unexamined potential to a clear, compelling, <em>investor-ready brand.</em></h2>
+            </div>
+            <div className="framework__funnel">
+              <span>Audit</span> <span className="arr">→</span>
+              <span>Narrative</span> <span className="arr">→</span>
+              <span>Strategy</span> <span className="arr">→</span>
+              <span>Blueprints</span> <span className="arr">→</span>
+              <span>Execution</span> <span className="arr">→</span>
+              <span>Partners</span>
+            </div>
           </div>
 
-          <div className="steps">
-            <div className="step reveal">
-              <div className="step__node"></div>
-              <div className="step__num">Phase 01</div>
-              <h4 className="step__title"><em>Onboarding</em></h4>
-              <ul className="step__list">
-                <li>Kick-off call &amp; briefing</li>
-                <li>Access to existing materials</li>
-                <li>Priorities &amp; quick wins agreed</li>
+          {/* SVG Spine */}
+          <div className="framework__spine">
+            <svg viewBox="0 0 1200 100" preserveAspectRatio="none" height="80" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', overflow: 'visible' }}>
+              <defs>
+                <linearGradient id="spineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%"   stopColor="#B8924C" stopOpacity="0.15"/>
+                  <stop offset="33%"  stopColor="#006A67" stopOpacity="0.35"/>
+                  <stop offset="66%"  stopColor="#006A67" stopOpacity="0.35"/>
+                  <stop offset="100%" stopColor="#B8924C" stopOpacity="0.50"/>
+                </linearGradient>
+              </defs>
+              <line x1="0" y1="50" x2="1200" y2="50" stroke="url(#spineGrad)" strokeWidth="1"/>
+              <g fill="#B8924C">
+                <polygon points="100,43 108,50 100,57 92,50"  opacity="1"/>
+                <polygon points="300,43 308,50 300,57 292,50" opacity="0.85"/>
+                <polygon points="500,41 510,50 500,59 490,50" fill="#006A67" opacity="1"/>
+                <polygon points="700,41 710,50 700,59 690,50" fill="#006A67" opacity="1"/>
+                <polygon points="900,43 908,50 900,57 892,50" opacity="0.80"/>
+                <polygon points="1100,40 1113,50 1100,60 1087,50" opacity="1"/>
+              </g>
+              <g stroke="rgba(184,146,76,0.2)" strokeWidth="1" strokeDasharray="4 6">
+                <line x1="108"  y1="50" x2="292"  y2="50"/>
+                <line x1="308"  y1="50" x2="490"  y2="50"/>
+                <line x1="510"  y1="50" x2="690"  y2="50"/>
+                <line x1="710"  y1="50" x2="892"  y2="50"/>
+                <line x1="908"  y1="50" x2="1087" y2="50"/>
+              </g>
+              <g stroke="rgba(184,146,76,0.12)" strokeWidth="1">
+                <line x1="100"  y1="57" x2="100"  y2="100"/>
+                <line x1="300"  y1="57" x2="300"  y2="100"/>
+                <line x1="500"  y1="59" x2="500"  y2="100"/>
+                <line x1="700"  y1="59" x2="700"  y2="100"/>
+                <line x1="900"  y1="57" x2="900"  y2="100"/>
+                <line x1="1100" y1="60" x2="1100" y2="100"/>
+              </g>
+            </svg>
+          </div>
+
+          {/* Stage Cards */}
+          <div className="framework__grid">
+
+            <div className="framework__card">
+              <span className="framework__card-num">01</span>
+              <span className="framework__card-label">Audit</span>
+              <div className="framework__card-rule"></div>
+              <h3 className="framework__card-title">Investment Potential Audit</h3>
+              <ul className="framework__card-items">
+                <li>Landscape &amp; context</li>
+                <li>Competitive positioning analysis</li>
+                <li>Target investor mapping</li>
+                <li>Visibility &amp; communication gaps</li>
               </ul>
             </div>
-            <div className="step reveal" style={{ '--rd': '100ms' } as React.CSSProperties}>
-              <div className="step__node"></div>
-              <div className="step__num">Phase 02</div>
-              <h4 className="step__title">Diagnose</h4>
-              <ul className="step__list">
-                <li>Desk research (economy, sectors, competitors)</li>
-                <li>Stakeholder interviews (IPA, policymakers)</li>
-                <li>Investor insights (existing &amp; target)</li>
-                <li>Marketing &amp; visibility audit</li>
+
+            <div className="framework__card">
+              <span className="framework__card-num">02</span>
+              <span className="framework__card-label">Narrative</span>
+              <div className="framework__card-rule"></div>
+              <h3 className="framework__card-title">Investment Narrative &amp; Positioning</h3>
+              <ul className="framework__card-items">
+                <li>Investment Vision &amp; Story</li>
+                <li>Investment Logic Model</li>
+                <li>Priority Sectors &amp; Investor Profiles</li>
+                <li>Value Proposition Canvas</li>
+                <li>Tagline / Investment Brand Promise</li>
               </ul>
             </div>
-            <div className="step reveal" style={{ '--rd': '200ms' } as React.CSSProperties}>
-              <div className="step__node"></div>
-              <div className="step__num">Phase 03</div>
-              <h4 className="step__title"><em>Define</em></h4>
-              <ul className="step__list">
-                <li>Strategic workshops (vision, sectors, targeting)</li>
-                <li>Investment story &amp; positioning development</li>
-                <li>Investment Logic Model (Why / How / What)</li>
-                <li>Value Proposition Canvas (by investor profiles)</li>
-              </ul>
-            </div>
-            <div className="step reveal" style={{ '--rd': '300ms' } as React.CSSProperties}>
-              <div className="step__node"></div>
-              <div className="step__num">Phase 04</div>
-              <h4 className="step__title">Activate</h4>
-              <ul className="step__list">
-                <li>Investor journey mapping</li>
-                <li>Channel strategy (digital, media, events)</li>
+
+            <div className="framework__card">
+              <span className="framework__card-num">03</span>
+              <span className="framework__card-label">Strategy</span>
+              <div className="framework__card-rule"></div>
+              <h3 className="framework__card-title">Investment Communication Strategy</h3>
+              <ul className="framework__card-items">
+                <li>Investment Deal Flow Engine</li>
+                <li>Channel &amp; campaign strategy</li>
                 <li>Messaging architecture</li>
+                <li>Investor journey framework</li>
               </ul>
             </div>
-            <div className="step reveal" style={{ '--rd': '400ms' } as React.CSSProperties}>
-              <div className="step__node"></div>
-              <div className="step__num">Phase 05</div>
-              <h4 className="step__title"><em>Implement</em></h4>
-              <ul className="step__list">
-                <li>Website &amp; digital platform briefs</li>
+
+            <div className="framework__card">
+              <span className="framework__card-num">04</span>
+              <span className="framework__card-label">Blueprints</span>
+              <div className="framework__card-rule"></div>
+              <h3 className="framework__card-title">Execution Blueprints</h3>
+              <ul className="framework__card-items">
+                <li>Website &amp; digital platforms briefs</li>
                 <li>Design &amp; identity briefs</li>
-                <li>Media &amp; outreach briefs</li>
-                <li>Conference &amp; activation guidelines</li>
+                <li>Media &amp; PR briefs</li>
+                <li>Conferences &amp; investor outreach briefs</li>
               </ul>
             </div>
-            <div className="step reveal" style={{ '--rd': '500ms' } as React.CSSProperties}>
-              <div className="step__node"></div>
-              <div className="step__num">Phase 06</div>
-              <h4 className="step__title">Advisory</h4>
-              <ul className="step__list">
-                <li>Vendor alignment &amp; supervision</li>
+
+            <div className="framework__card">
+              <span className="framework__card-num">05</span>
+              <span className="framework__card-label">Execution</span>
+              <div className="framework__card-rule"></div>
+              <h3 className="framework__card-title">Guided Execution</h3>
+              <ul className="framework__card-items">
+                <li>Vendor supervision</li>
                 <li>Campaign optimisation</li>
                 <li>Investor engagement refinement</li>
                 <li>Deal flow monitoring</li>
               </ul>
             </div>
+
+            <div className="framework__card">
+              <span className="framework__card-num">06</span>
+              <span className="framework__card-label">Partners</span>
+              <div className="framework__card-rule"></div>
+              <h3 className="framework__card-title">Access to Execution Partners</h3>
+              <ul className="framework__card-items">
+                <li>Global media platforms</li>
+                <li>Branding &amp; design studios</li>
+                <li>Digital &amp; campaign agencies</li>
+                <li>Investor-facing content specialists</li>
+              </ul>
+            </div>
+
           </div>
+
+          {/* Output Banner */}
+          <div className="framework__output">
+            <div className="framework__output-label">The Output</div>
+            <div className="framework__output-divider"></div>
+            <div className="framework__output-title">
+              A complete <em>investment brand</em><br />and go-to-market plan.
+            </div>
+          </div>
+
         </div>
       </section>
 
