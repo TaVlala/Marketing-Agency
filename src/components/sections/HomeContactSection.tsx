@@ -80,7 +80,7 @@ export default function HomeContactSection() {
       <div className="contact__body reveal">
         <div className="contact__left">
           <p className="contact__pitch">
-            Ready to take your brand<br />to the <em>next level?</em><br />Reach out.
+            Ready to take your location<br />to the <em>next level?</em><br />Reach out.
           </p>
           <div className="contact__direct">
             <span className="label">Direct line</span>
