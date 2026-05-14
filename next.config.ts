@@ -3,6 +3,20 @@ import { withPayload } from '@payloadcms/next/withPayload';
 
 const nextConfig: NextConfig = {
   reactStrictMode: false,
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Strict-Transport-Security',
+            // 1 week — increase to 31536000 (1 year) after confirming no issues
+            value: 'max-age=604800',
+          },
+        ],
+      },
+    ];
+  },
   eslint: {
     ignoreDuringBuilds: false,
   },

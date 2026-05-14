@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import CookieSettingsButton from './CookieSettingsButton';
+import EmailLink from './EmailLink';
 
 export default function Footer() {
   return (
@@ -39,7 +40,7 @@ export default function Footer() {
             <div>
               <div className="footer__col-head">— Reach us</div>
               <ul className="footer__list">
-                <li><a href="mailto:hello@hgmarketing.com">hello@hgmarketing.com</a></li>
+                <li><EmailLink /></li>
                 <li><Link href="/#contact">Contact us</Link></li>
                 <li><Link href="/#contact">Subscribe</Link></li>
               </ul>

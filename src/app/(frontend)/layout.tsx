@@ -13,28 +13,45 @@ if (!siteUrl.startsWith('http')) {
   );
 }
 
+const description =
+  'Boutique marketing consultancy for investment promotion agencies. We help IPAs sharpen their brand, build their narrative, and attract the investors they deserve.';
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl.startsWith('http') ? siteUrl : 'https://hgmarketing.com'),
   title: {
     default: 'HGM · Hidden Gem Marketing',
     template: '%s | HGM · Hidden Gem Marketing',
   },
-  description:
-    'HGM is a boutique marketing consultancy specialised in investment promotion. We help IPAs raise their profile, sharpen their brand, and attract the investors they deserve.',
+  description,
+  icons: {
+    apple: '/apple-touch-icon.png',
+  },
   openGraph: {
     type: 'website',
     siteName: 'HGM · Hidden Gem Marketing',
     title: 'HGM · Hidden Gem Marketing',
-    description:
-      'HGM is a boutique marketing consultancy specialised in investment promotion. We help IPAs raise their profile, sharpen their brand, and attract the investors they deserve.',
+    description,
   },
   twitter: {
     card: 'summary_large_image',
     title: 'HGM · Hidden Gem Marketing',
-    description:
-      'HGM is a boutique marketing consultancy specialised in investment promotion. We help IPAs raise their profile, sharpen their brand, and attract the investors they deserve.',
+    description,
   },
   robots: { index: true, follow: true },
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'HGM · Hidden Gem Marketing',
+  url: 'https://hgmarketing.com',
+  logo: 'https://hgmarketing.com/favicon.svg',
+  description,
+  email: 'hello@hgmarketing.com',
+  sameAs: [
+    'https://www.linkedin.com/company/hgmarketing',
+    'https://www.instagram.com/hgmarketing',
+  ],
 };
 
 export default function FrontendLayout({ children }: { children: React.ReactNode }) {
@@ -42,6 +59,10 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link

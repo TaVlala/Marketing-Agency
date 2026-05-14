@@ -2,7 +2,7 @@ import HeroSection from '@/components/HeroSection';
 import HomeContactSection from '@/components/sections/HomeContactSection';
 
 export const metadata = {
-  title: 'HGM · Hidden Gem Marketing — Investment Promotion. Marketing. Redefined.',
+  title: 'HGM · Hidden Gem Marketing',
 };
 
 export default function HomePage() {
