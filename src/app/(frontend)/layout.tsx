@@ -23,9 +23,6 @@ export const metadata: Metadata = {
     template: '%s | HGM · Hidden Gem Marketing',
   },
   description,
-  icons: {
-    apple: '/apple-touch-icon.png',
-  },
   openGraph: {
     type: 'website',
     siteName: 'HGM · Hidden Gem Marketing',
