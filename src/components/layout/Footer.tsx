@@ -42,7 +42,7 @@ export default function Footer() {
               <ul className="footer__list">
                 <li><EmailLink /></li>
                 <li><Link href="/#contact">Contact us</Link></li>
-                <li><Link href="/#contact">Subscribe</Link></li>
+                <li><Link href="/#newsletter">Subscribe</Link></li>
               </ul>
               <div className="footer__social">
                 <a href="https://www.linkedin.com/company/hgmarketing" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">

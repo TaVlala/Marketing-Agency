@@ -22,8 +22,8 @@
   --rule:      rgba(20,33,61,0.18);
   --rule-soft: rgba(20,33,61,0.08);
 
-  --display: "Newsreader", "Times New Roman", serif;
-  --sans:    "Inter", "Helvetica Neue", sans-serif;
+  --display: var(--font-newsreader), "Times New Roman", serif;
+  --sans:    var(--font-inter), "Helvetica Neue", sans-serif;
 
   --maxw:      1440px;
   --gutter:    clamp(24px, 5vw, 80px);

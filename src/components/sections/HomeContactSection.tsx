@@ -165,7 +165,7 @@ export default function HomeContactSection() {
         </form>
       </div>
 
-      <div className="form__newsletter reveal">
+      <div className="form__newsletter reveal" id="newsletter">
         <div>
           <h3>Sign up for quarterly newsletter.</h3>
           <p>— Four notes a year. No noise.</p>

@@ -1,9 +1,24 @@
 import type { Metadata } from 'next';
+import { Newsreader, Inter } from 'next/font/google';
 import '@/styles/globals.css';
 import Nav from '@/components/layout/Nav';
 import Footer from '@/components/layout/Footer';
 import CookieConsent from '@/components/layout/CookieConsent';
 import ClientEffects from '@/components/ClientEffects';
+
+const newsreader = Newsreader({
+  subsets: ['latin'],
+  axes: ['opsz'],
+  style: ['normal', 'italic'],
+  variable: '--font-newsreader',
+  display: 'swap',
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? '';
 if (!siteUrl.startsWith('http')) {
@@ -56,18 +71,12 @@ const jsonLd = {
 
 export default function FrontendLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${newsreader.variable} ${inter.variable}`}>
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,300;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600&display=swap"
-          rel="stylesheet"
         />
       </head>
       <body suppressHydrationWarning>
