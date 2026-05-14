@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import CookieSettingsButton from './CookieSettingsButton';
 import EmailLink from './EmailLink';
+import NewsletterLink from './NewsletterLink';
 
 export default function Footer() {
   return (
@@ -42,7 +43,7 @@ export default function Footer() {
               <ul className="footer__list">
                 <li><EmailLink /></li>
                 <li><Link href="/#contact">Contact us</Link></li>
-                <li><Link href="/#newsletter" scroll={false}>Subscribe</Link></li>
+                <li><NewsletterLink /></li>
               </ul>
               <div className="footer__social">
                 <a href="https://www.linkedin.com/company/hgmarketing" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
