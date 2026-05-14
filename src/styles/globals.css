@@ -442,11 +442,11 @@ button { font: inherit; cursor: pointer; }
    ================================================================ */
 .hero {
   position: relative;
-  min-height: 100svh;
-  padding: clamp(140px, 22vh, 240px) var(--gutter) 32px;
+  padding: clamp(140px, 22vh, 240px) var(--gutter) clamp(64px, 10vh, 120px);
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  align-content: space-between;
+  align-content: start;
+  gap: clamp(48px, 8vh, 96px);
   overflow: hidden;
   isolation: isolate;
 }
@@ -565,7 +565,7 @@ button { font: inherit; cursor: pointer; }
   max-width: 720px;
 }
 .hero__sub-lede em { font-style: italic; color: var(--teal); }
-.hero__cta-row { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 32px; justify-content: center; }
+.hero__cta-row { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 12px; justify-content: center; }
 .hero__scroll {
   position: absolute;
   left: 50%;
