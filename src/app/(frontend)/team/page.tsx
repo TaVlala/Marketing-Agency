@@ -63,7 +63,7 @@ export default function TeamPage() {
 
             <article className="member reveal" style={{ '--rd': '80ms' } as React.CSSProperties}>
               <div className="member__portrait">
-                <img src="/team/david.jpeg" alt="David Tavlalashvili" className="member__photo-img" />
+                <img src="/team/david.jpeg" alt="David Tavlalashvili" className="member__photo-img" style={{ transform: 'scale(1.3)', transformOrigin: 'center bottom' }} />
               </div>
               <div className="member__body">
                 <span className="member__role-eyebrow"><span className="bar"></span>Co-Founder</span>
