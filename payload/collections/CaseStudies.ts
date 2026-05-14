@@ -2,10 +2,14 @@ import type { CollectionConfig } from 'payload';
 
 export const CaseStudies: CollectionConfig = {
   slug: 'case-studies',
+  labels: {
+    singular: 'Our Work',
+    plural: 'Our Work',
+  },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'client', 'status', 'tags'],
-    description: 'Work / Results page entries. Set status to Published to make them visible.',
+    description: 'Our Work entries. Set status to Published to make them visible on the site.',
   },
   access: {
     read: () => true,
