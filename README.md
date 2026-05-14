@@ -1,39 +1,42 @@
 # HGM · Hidden Gem Marketing — Website
 
-Boutique marketing consultancy website for the investment promotion sector. Built with Next.js 15 (App Router) and a Payload CMS integration, deployed to Vercel.
+Boutique marketing consultancy website for the investment promotion sector.
 
 **Repository:** https://github.com/TaVlala/Marketing-Agency.git · branch: `master`
-**Brand:** HGM · *Hidden Gem Marketing — Investment Promotion. Marketing. Redefined.*
+**Live frontend:** https://marketing-agency-tau-gilt.vercel.app
+**CMS admin:** https://web-production-addfa.up.railway.app/admin
 
 ---
 
 ## Table of Contents
 
-1. [Overview](#1-overview)
+1. [Architecture](#1-architecture)
 2. [Repository Structure](#2-repository-structure)
 3. [Local Development](#3-local-development)
 4. [Environment Variables](#4-environment-variables)
 5. [Deployment](#5-deployment)
-6. [Pages & Components](#6-pages--components)
-7. [Design System](#7-design-system)
-8. [Responsive Behaviour](#8-responsive-behaviour)
+6. [Pages](#6-pages)
+7. [CMS Collections](#7-cms-collections)
+8. [Design System](#8-design-system)
 9. [Tech Stack](#9-tech-stack)
 10. [Scripts](#10-scripts)
 
 ---
 
-## 1. Overview
+## 1. Architecture
 
-HGM is a boutique consultancy for Investment Promotion Agencies (IPAs). The site presents the agency, its six service pillars, the engagement process, the team, and a contact funnel.
+The project is split into two independent deployments:
 
-The frontend is **Next.js 15 with the App Router** running on Vercel. Payload CMS is integrated via `@payloadcms/next/withPayload` for content management, with a PostgreSQL backend on Railway.
+| Layer | Technology | Host |
+|---|---|---|
+| **Frontend** | Next.js 15 (App Router) | Vercel |
+| **CMS / API** | Payload CMS 3 (standalone) | Railway |
+| **Database** | PostgreSQL | Railway |
+| **Image CDN** | Cloudinary (display-side loader only) | Cloudinary |
 
-Key integrations:
+The frontend fetches CMS content at build time via `src/lib/payload.ts`. All fetch calls are wrapped in `safeFetch()` which returns typed fallback data if the CMS is unreachable, so the frontend builds and runs independently.
 
-- **Payload CMS 3** — content for team members, services, case studies, testimonials. Integrated directly into the Next.js app.
-- **Cloudinary** — custom image loader for CDN-served, optimised media.
-- **Formspree** — handles contact form submissions, no backend required.
-- **Plausible** — privacy-friendly analytics, gated behind cookie consent.
+Form submissions and newsletter signups are mirrored to the CMS (fire-and-forget) after the primary services (Formspree, Mailchimp) confirm success.
 
 ---
 
@@ -43,37 +46,48 @@ Key integrations:
 Marketing Agency/
 ├── src/
 │   ├── app/
-│   │   ├── (frontend)/               # Public-facing routes (route group)
-│   │   │   ├── layout.tsx            # Frontend layout: Nav + Footer + ClientEffects
-│   │   │   ├── page.tsx              # Homepage (hero, about, services, contact)
-│   │   │   ├── services/page.tsx     # Services page with full process
-│   │   │   ├── work/page.tsx         # Work / case studies
-│   │   │   ├── team/page.tsx         # Who we are / team members
-│   │   │   ├── contact/page.tsx
-│   │   │   ├── about/page.tsx        # (legacy)
-│   │   │   ├── privacy/page.tsx      # Privacy & Cookie Policy
-│   │   │   └── not-found.tsx
-│   │   └── (payload)/                # Payload admin route group
+│   │   └── (frontend)/               # All public-facing routes
+│   │       ├── layout.tsx            # Nav + Footer + CookieConsent + ClientEffects
+│   │       ├── page.tsx              # Homepage
+│   │       ├── team/page.tsx         # Who we are
+│   │       ├── services/page.tsx     # How we work
+│   │       ├── work/page.tsx         # Our work / case studies
+│   │       ├── contact/page.tsx      # Contact page
+│   │       └── privacy/page.tsx      # Privacy & Cookie Policy
 │   ├── components/
 │   │   ├── HeroSection.tsx           # Animated hero with rotating word
-│   │   ├── ContactForm.tsx           # Contact + newsletter forms
-│   │   ├── ClientEffects.tsx         # Scroll-reveal observer + parallax + stat counters
+│   │   ├── ClientEffects.tsx         # Scroll-reveal, stat counters, parallax
 │   │   ├── layout/
-│   │   │   ├── Nav.tsx               # Desktop nav + mobile drawer + hamburger
-│   │   │   ├── Footer.tsx            # 4-col footer with socials
-│   │   │   └── CookieConsent.tsx     # Plausible consent banner
-│   │   ├── sections/                 # Legacy section components
-│   │   └── ui/                       # Reusable UI primitives
+│   │   │   ├── Nav.tsx               # Desktop nav + mobile drawer
+│   │   │   ├── Footer.tsx            # 4-col footer
+│   │   │   └── CookieConsent.tsx     # Analytics consent banner
+│   │   └── sections/
+│   │       ├── HomeContactSection.tsx  # Contact form + newsletter (home)
+│   │       └── ContactForm.tsx         # Contact form (contact page)
 │   ├── lib/
-│   │   ├── payload.ts                # safeFetch helpers (typed fallbacks if CMS down)
+│   │   ├── payload.ts                # Typed fetch helpers with fallbacks
+│   │   ├── analytics.ts              # Plausible event helpers
+│   │   ├── mailchimp.ts              # Mailchimp JSONP subscribe helper
 │   │   └── cloudinary-loader.ts      # Custom Next.js image loader
 │   └── styles/
-│       └── globals.css               # Design system + all component styles
-├── payload/                          # Payload CMS config
-│   ├── collections/                  # TeamMembers, Services, CaseStudies, Testimonials, ProofStats, Media
+│       └── globals.css               # Full design system + component styles
+├── payload/                          # Standalone Payload CMS (deployed separately)
+│   ├── collections/
+│   │   ├── Users.ts
+│   │   ├── Media.ts
+│   │   ├── TeamMembers.ts
+│   │   ├── Services.ts
+│   │   ├── CaseStudies.ts            # Labelled "Our Work" in admin
+│   │   ├── Testimonials.ts
+│   │   ├── ProofStats.ts
+│   │   ├── Submissions.ts            # Contact form submissions
+│   │   └── Subscribers.ts            # Newsletter subscribers
 │   ├── payload.config.ts
-│   └── payload-types.ts
-├── next.config.ts                    # withPayload wrapper, Cloudinary loader
+│   ├── payload-types.ts              # Hand-maintained TypeScript interfaces
+│   └── seed.ts                       # Local seed script (requires live DB)
+├── seed-rest.mjs                     # REST API seed — populates live CMS
+├── public/
+│   └── team/                         # Team member photos
 └── .env.example
 ```
 
@@ -84,7 +98,7 @@ Marketing Agency/
 ### Prerequisites
 
 - Node.js 20+
-- PostgreSQL (local or Railway connection string)
+- Access to the Railway PostgreSQL connection string (or a local PostgreSQL instance)
 
 ### Setup
 
@@ -92,85 +106,108 @@ Marketing Agency/
 cd "Marketing Agency"
 npm install
 cp .env.example .env.local
-# Edit .env.local — see Environment Variables below
+# Fill in .env.local — see Environment Variables below
 npm run dev        # → http://localhost:3000
 ```
 
-The frontend builds without a live CMS — `safeFetch` calls in `src/lib/payload.ts` return typed fallback data when Payload is unreachable, so the UI can be developed standalone.
-
-To run Payload locally with the integrated app, set `DATABASE_URI` and `PAYLOAD_SECRET` in `.env.local` and visit `/admin` after starting `npm run dev`.
+The frontend builds and runs without a live CMS connection. `safeFetch()` in `src/lib/payload.ts` returns typed fallback data when Payload is unreachable.
 
 ---
 
 ## 4. Environment Variables
 
-### `.env.local`
+### Frontend — `.env.local` / Vercel
 
 | Variable | Purpose |
 |---|---|
-| `DATABASE_URI` | PostgreSQL connection string for Payload |
-| `PAYLOAD_SECRET` | JWT signing secret (≥32 random chars) |
 | `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` | Cloudinary cloud name for image CDN |
+| `NEXT_PUBLIC_FORMSPREE_ENDPOINT` | Formspree contact form endpoint URL |
+| `NEXT_PUBLIC_MAILCHIMP_URL` | Mailchimp embedded form action URL |
+| `NEXT_PUBLIC_PAYLOAD_URL` | Railway CMS URL — used by forms to mirror submissions to CMS |
 | `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` | Plausible analytics domain |
-| `NEXT_PUBLIC_FORMSPREE_ENDPOINT` | Formspree contact form endpoint |
-| `NEXT_PUBLIC_SITE_URL` | Canonical site URL (sitemap) |
+| `NEXT_PUBLIC_SITE_URL` | Canonical site URL (used for sitemap + OG meta) |
+| `PAYLOAD_URL` | CMS API URL for build-time fetches (can be same as `NEXT_PUBLIC_PAYLOAD_URL`) |
+| `DATABASE_URI` | PostgreSQL connection string (Railway) |
+| `PAYLOAD_SECRET` | JWT signing secret for Payload (≥32 random chars) |
 
-### Vercel
+### CMS — Railway
 
-Set the same variables in **Project Settings → Environment Variables** for Production, Preview, and Development as appropriate.
+| Variable | Purpose |
+|---|---|
+| `DATABASE_URI` | PostgreSQL connection string (auto-provided by Railway) |
+| `PAYLOAD_SECRET` | JWT signing secret — must match any local seed scripts |
+| `PAYLOAD_PUBLIC_SERVER_URL` | Public Railway URL — must be set without trailing slash |
+| `PAYLOAD_CORS_ORIGINS` | Comma-separated list of allowed frontend origins (e.g. `https://marketing-agency-tau-gilt.vercel.app`) |
 
-### Railway (Payload PostgreSQL)
-
-Railway provides `DATABASE_URI` automatically when you attach a PostgreSQL plugin. Reference it in your Vercel environment variables.
+> When you move to a custom domain, update `PAYLOAD_CORS_ORIGINS` on Railway and the `NEXT_PUBLIC_SITE_URL` on Vercel. `NEXT_PUBLIC_PAYLOAD_URL` stays the same unless the CMS moves.
 
 ---
 
 ## 5. Deployment
 
-### Frontend + CMS — Vercel
+### Frontend — Vercel
 
-The site is a single Next.js app — Payload's admin is mounted as a route group within the same deployment.
+Vercel auto-deploys on every push to `master`. No build configuration needed beyond environment variables.
 
-1. Import the GitHub repo into Vercel.
-2. Set environment variables (see above).
-3. Vercel auto-deploys on every push to `master`.
+### CMS — Railway
 
-### Database — Railway
+The `payload/` directory is deployed as a standalone Node.js service on Railway.
 
-1. Create a Railway project with the **PostgreSQL** plugin.
-2. Copy the `DATABASE_URI` from Railway's Variables tab.
-3. Paste it into Vercel's environment variables.
+- **Root directory:** `payload/`
+- **Build command:** `payload build`
+- **Start command:** `payload serve`
+- **Required env vars:** `DATABASE_URI`, `PAYLOAD_SECRET`, `PAYLOAD_PUBLIC_SERVER_URL`, `PAYLOAD_CORS_ORIGINS`
 
-After first deploy, visit `https://your-domain/admin` to create the initial Payload admin user.
+To deploy manually: `railway up --detach` from the project root (git push alone does not always trigger Railway auto-deploy).
 
----
+### Populating the CMS
 
-## 6. Pages & Components
+After a fresh deploy, run the REST seed script to populate all collections with site content:
 
-### Pages
+```bash
+$env:ADMIN_PASSWORD="your-payload-admin-password"
+node seed-rest.mjs
+```
 
-| Route | Description |
-|---|---|
-| `/` | Homepage — hero with rotating word, who we are, six service pillars, contact form |
-| `/services` | Full services breakdown — six pillars + six-phase engagement process |
-| `/work` | Case studies, sectors served, stats |
-| `/team` | Team members + principles |
-| `/#contact` | Anchor on homepage to contact section |
-| `/privacy` | Privacy & Cookie Policy |
-
-### Key Components
-
-- **`Nav.tsx`** — Sticky top nav with `H.` logo + `HGM` wordmark, gold divider, desktop links, navy CTA pill. Mobile (≤900px): hamburger button + full-screen drawer with slide-down animation and body scroll lock.
-- **`HeroSection.tsx`** — Hero with category eyebrow, large serif title, rotating italic word ("capital." → "investors." → "narratives." …), subheading, CTA button.
-- **`ContactForm.tsx`** — Direct line + Formspree-powered form + quarterly newsletter signup.
-- **`ClientEffects.tsx`** — Reveal-on-scroll observer (re-runs per route), stat counter animations, hero number parallax. Re-scans the DOM on `usePathname()` change so client-side route transitions don't leave sections invisible.
-- **`Footer.tsx`** — 4-col footer with brand block, navigation, capabilities, reach-us with email + LinkedIn/Instagram icons.
+This populates: Site Settings, 6 Services, 4 Proof Stats, 4 Case Studies (Our Work), and 2 Team Members. Photos should be added manually via the admin panel.
 
 ---
 
-## 7. Design System
+## 6. Pages
 
-The visual language lives in `src/styles/globals.css` as CSS custom properties:
+| Route | Nav label | Description |
+|---|---|---|
+| `/` | — | Homepage — hero, who we are, six service pillars, contact |
+| `/team` | Who we are | Team members + four principles |
+| `/services` | How we work | Six-pillar service breakdown + six-phase engagement |
+| `/work` | — (not in nav yet) | Case studies, stats, sectors |
+| `/#contact` | Contact | Anchor to homepage contact section |
+| `/contact` | — | Standalone contact page with full form |
+| `/privacy` | — | Privacy & Cookie Policy |
+
+---
+
+## 7. CMS Collections
+
+| Collection | Admin label | Purpose |
+|---|---|---|
+| `team-members` | Team Members | Eko and David — name, role, bio, photo, LinkedIn |
+| `services` | Services | Six service pillars shown on homepage + services page |
+| `case-studies` | Our Work | Client engagements — shown on `/work` when published |
+| `testimonials` | Testimonials | Client quotes — add real quotes when available |
+| `proof-stats` | Proof Stats | Stats band on homepage (10+, 15+, 100+, 50+) |
+| `submissions` | Form Submissions | Contact form entries mirrored from Formspree |
+| `subscribers` | Subscribers | Newsletter signups mirrored from Mailchimp |
+| `media` | Media | Uploaded images — stored on Railway filesystem |
+| `users` | Users | Admin panel users (roles: admin / editor) |
+
+**Global:** `site-settings` — firm name, tagline, contact email, hero copy, social links.
+
+---
+
+## 8. Design System
+
+All styles live in `src/styles/globals.css` as CSS custom properties.
 
 | Token | Value | Usage |
 |---|---|---|
@@ -178,27 +215,20 @@ The visual language lives in `src/styles/globals.css` as CSS custom properties:
 | `--navy` | `#14213D` | Primary ink + button background |
 | `--navy-deep` | `#0B132B` | Dark sections (services, footer) |
 | `--teal` | `#006A67` | Italic accent in headings |
-| `--gold` / `--gold-soft` | `#B8924C` / `#D6B373` | Section eyebrows, em accents in dark sections, the dot in `H.` |
-| `--display` | Newsreader (variable serif) | Headings |
+| `--gold` | `#B8924C` | Eyebrows, decorative accents, `H.` dot |
+| `--display` | Newsreader (variable serif) | All headings |
 | `--sans` | Inter | Body, eyebrows, CTAs |
 | `--maxw` | `1440px` | Section content max-width |
-| `--gutter` | `clamp(24px, 5vw, 80px)` | Side padding |
+| `--gutter` | `clamp(24px, 5vw, 80px)` | Horizontal section padding |
 
-Section rhythm uses generous `clamp(100px, 16vh, 180px)` vertical padding (with the section after the hero tightened to keep the CTA close to the next title).
+### Breakpoints
 
----
-
-## 8. Responsive Behaviour
-
-| Breakpoint | Behaviour |
+| Breakpoint | Changes |
 |---|---|
-| **≥901px** | Full desktop nav, 3-col services, 4-col pillars, side-by-side contact grid |
-| **≤900px** | Hamburger nav drawer, 2-col services, hero rotator unconstrained, sectors → 2 cols |
-| **≤700px** | Form labels stack above inputs, newsletter input stacks above subscribe button |
-| **≤600px** | Section padding tightens (`clamp(64, 8vh, 96)`), service card padding shrinks, drop-cap reduced 88→60px, hero deco number scaled down, all CTAs/heros flow vertically, footer monogram 96→64px |
-| **≤380px** | Hero title floor reduced, wordmark shrinks further |
-
-Body has `overflow-x: hidden` to prevent rogue horizontal scroll. The mobile drawer uses `100vw / 100dvh` with high z-index (9998) to escape the nav's stacking context.
+| `≤900px` | Mobile nav drawer, stacked hero, 2-col services |
+| `≤700px` | Form labels stack, footer columns stack |
+| `≤600px` | Tighter section padding, smaller hero deco |
+| `≤380px` | Smallest hero title floor |
 
 ---
 
@@ -208,14 +238,14 @@ Body has `overflow-x: hidden` to prevent rogue horizontal scroll. The mobile dra
 |---|---|
 | Framework | Next.js 15 (App Router) |
 | Language | TypeScript |
-| Styling | Custom CSS design system + Tailwind v4 (utility classes on legacy pages) |
-| CMS | Payload CMS 3 (integrated via `@payloadcms/next/withPayload`) |
-| Database | PostgreSQL (Railway plugin) |
-| Hosting | Vercel (Next.js + Payload admin) |
-| Database hosting | Railway |
-| Image CDN | Cloudinary (custom Next.js loader) |
-| Contact form | Formspree |
-| Newsletter | Client-side form (placeholder — wire to Mailchimp/Formspree as needed) |
+| Styling | Custom CSS design system (`globals.css`) + Tailwind v4 (utility classes on some pages) |
+| CMS | Payload CMS 3 (standalone, not integrated into Next.js) |
+| Database | PostgreSQL on Railway |
+| Frontend hosting | Vercel |
+| CMS hosting | Railway |
+| Image CDN | Cloudinary (display-side custom loader — no upload adapter) |
+| Contact forms | Formspree + mirrored to Payload CMS |
+| Newsletter | Mailchimp JSONP + mirrored to Payload CMS |
 | Analytics | Plausible (cookie-consent gated) |
 | Fonts | Newsreader + Inter (Google Fonts) |
 
@@ -224,20 +254,27 @@ Body has `overflow-x: hidden` to prevent rogue horizontal scroll. The mobile dra
 ## 10. Scripts
 
 ```bash
-npm run dev             # Next.js dev server on http://localhost:3000
-npm run build           # Production build (ESLint errors will fail the build)
+# Frontend
+npm run dev             # Dev server → http://localhost:3000
+npm run build           # Production build
 npm run start           # Run production build locally
-npm run lint            # ESLint (must pass clean before merging)
+npm run lint            # ESLint
+
+# CMS (run from project root)
 npm run generate:types  # Regenerate payload/payload-types.ts from live DB schema
+
+# Seed live CMS via REST API
+$env:ADMIN_PASSWORD="your-password"
+node seed-rest.mjs
 ```
 
-### Payload type generation
+### Regenerating Payload types
 
-After changing any collection schema in `payload/collections/`, regenerate the TypeScript types:
+After changing any collection schema in `payload/collections/`, regenerate TypeScript types:
 
 ```bash
-# Requires DATABASE_URI to point at a live Payload DB
+# Requires DATABASE_URI pointing at the live Railway DB
 npm run generate:types
 ```
 
-This overwrites `payload/payload-types.ts`. Commit the updated file alongside your schema change.
+Commit the updated `payload/payload-types.ts` alongside the schema change.
