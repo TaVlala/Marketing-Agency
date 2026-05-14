@@ -3,6 +3,7 @@ import { withPayload } from '@payloadcms/next/withPayload';
 
 const nextConfig: NextConfig = {
   reactStrictMode: false,
+  poweredByHeader: false,
   async headers() {
     return [
       {
