@@ -6,6 +6,7 @@ import { subscribeToMailchimp } from '@/lib/mailchimp';
 
 const FORMSPREE_URL = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || '';
 const MAILCHIMP_URL = process.env.NEXT_PUBLIC_MAILCHIMP_URL || '';
+const PAYLOAD_URL = process.env.NEXT_PUBLIC_PAYLOAD_URL || '';
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
@@ -42,6 +43,18 @@ export default function HomeContactSection() {
         setContactStatus('success');
         form.reset();
         trackEvent('Contact Form Submitted');
+        if (PAYLOAD_URL) {
+          fetch(`${PAYLOAD_URL}/api/submissions`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name: data.get('name'),
+              email: data.get('email'),
+              organisation: data.get('organisation'),
+              message: data.get('message'),
+            }),
+          }).catch(() => {});
+        }
       } else {
         const json = await res.json().catch(() => null);
         setContactStatus('error');
@@ -69,6 +82,13 @@ export default function HomeContactSection() {
       setNewsletterStatus('success');
       setNewsletterEmail('');
       trackEvent('Subscribe Form Submitted');
+      if (PAYLOAD_URL) {
+        fetch(`${PAYLOAD_URL}/api/subscribers`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: newsletterEmail }),
+        }).catch(() => {});
+      }
     } else {
       setNewsletterStatus('error');
       setNewsletterError(result.message);

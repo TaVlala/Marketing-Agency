@@ -7,6 +7,8 @@ import { Services } from './collections/Services.ts';
 import { CaseStudies } from './collections/CaseStudies.ts';
 import { Testimonials } from './collections/Testimonials.ts';
 import { ProofStats } from './collections/ProofStats.ts';
+import { Submissions } from './collections/Submissions.ts';
+import { Subscribers } from './collections/Subscribers.ts';
 import { SiteSettings } from './collections/SiteSettings.ts';
 import { Media } from './collections/Media.ts';
 
@@ -28,6 +30,11 @@ export default buildConfig({
     },
   }),
 
+  // CORS — allow the Vercel frontend to POST to the CMS API
+  cors: (process.env.PAYLOAD_CORS_ORIGINS || 'http://localhost:3000')
+    .split(',')
+    .map(o => o.trim()),
+
   // Collections
   collections: [
     Users,
@@ -37,6 +44,8 @@ export default buildConfig({
     CaseStudies,
     Testimonials,
     ProofStats,
+    Submissions,
+    Subscribers,
   ],
 
   // Globals

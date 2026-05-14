@@ -9,6 +9,7 @@ import { trackEvent } from '@/lib/analytics';
  * Get a free form at https://formspree.io
  */
 const FORMSPREE_URL = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || '';
+const PAYLOAD_URL = process.env.NEXT_PUBLIC_PAYLOAD_URL || '';
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
@@ -51,6 +52,19 @@ export default function ContactForm() {
         setStatus('success');
         form.reset();
         trackEvent('Contact Form Submitted');
+        if (PAYLOAD_URL) {
+          fetch(`${PAYLOAD_URL}/api/submissions`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name: data.get('name'),
+              email: data.get('email'),
+              organisation: data.get('organisation'),
+              service: data.get('service'),
+              message: data.get('message'),
+            }),
+          }).catch(() => {});
+        }
       } else {
         const json = await res.json();
         setStatus('error');

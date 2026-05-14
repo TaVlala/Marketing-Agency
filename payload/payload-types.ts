@@ -17,6 +17,8 @@ export interface Config {
     'case-studies': CaseStudy;
     testimonials: Testimonial;
     'proof-stats': ProofStat;
+    submissions: Submission;
+    subscribers: Subscriber;
   };
   globals: {
     'site-settings': SiteSettings;
@@ -131,6 +133,28 @@ export interface SiteSettings {
     linkedin?: string | null;
     twitter?: string | null;
   } | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// ─── Form Submissions ─────────────────────────────────────────────────────────
+
+export interface Submission {
+  id: string;
+  name: string;
+  email: string;
+  organisation?: string | null;
+  service?: string | null;
+  message?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// ─── Newsletter Subscribers ───────────────────────────────────────────────────
+
+export interface Subscriber {
+  id: string;
+  email: string;
   createdAt: string;
   updatedAt: string;
 }
