@@ -1485,6 +1485,10 @@ button { font: inherit; cursor: pointer; }
 .contact__direct .label::before { content: ""; width: 18px; height: 1px; background: var(--gold); }
 .contact__direct a { font-family: var(--display); font-style: italic; font-weight: 400; font-size: clamp(22px, 2vw, 30px); line-height: 1.25; color: var(--navy); text-decoration: none; letter-spacing: -0.005em; border-bottom: 1px solid transparent; transition: border-color 220ms ease, color 220ms ease; }
 .contact__direct a:hover { color: var(--teal); border-bottom-color: var(--gold); }
+.contact__thankyou { display: flex; flex-direction: column; justify-content: center; gap: 12px; padding: 48px 0; animation: fadeIn 400ms ease; }
+.contact__thankyou-title { font-family: var(--display); font-weight: 400; font-size: clamp(24px, 2.5vw, 36px); line-height: 1.15; letter-spacing: -0.02em; color: var(--navy); margin: 0; font-style: italic; }
+.contact__thankyou-sub { font-family: var(--sans); font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold); margin: 0; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 .contact__form { display: grid; gap: 28px; }
 .field-row { display: grid; grid-template-columns: 140px 1fr; gap: 24px; align-items: end; padding-bottom: 14px; border-bottom: 1px solid var(--rule); transition: border-bottom-color 220ms ease; }
 .field-row:focus-within { border-bottom-color: var(--navy); }
