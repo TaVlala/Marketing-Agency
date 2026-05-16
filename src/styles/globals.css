@@ -1479,7 +1479,7 @@ button { font: inherit; cursor: pointer; }
 .contact__body { display: grid; grid-template-columns: 1fr 1px 1fr; gap: clamp(40px, 6vw, 96px); align-items: start; }
 .contact__divider { width: 1px; background: var(--rule); align-self: stretch; justify-self: center; }
 .contact__pitch { font-family: var(--display); font-weight: 400; font-size: clamp(28px, 3vw, 44px); line-height: 1.12; letter-spacing: -0.02em; color: var(--navy); margin: 0 0 clamp(40px, 6vh, 60px) 0; font-variation-settings: "opsz" 72; max-width: 22ch; }
-.contact__pitch em { font-style: italic; color: var(--teal); }
+.contact__pitch em { font-style: italic; color: var(--gold-soft); }
 .contact__direct { display: grid; gap: 4px; padding-top: 24px; border-top: 1px solid var(--rule-soft); }
 .contact__direct .label { font-family: var(--sans); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-weight: 500; display: inline-flex; align-items: center; gap: 12px; margin-bottom: 8px; }
 .contact__direct .label::before { content: ""; width: 18px; height: 1px; background: var(--gold); }
