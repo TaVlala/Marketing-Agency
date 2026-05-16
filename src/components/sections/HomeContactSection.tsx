@@ -2,7 +2,6 @@
 
 import { useState, FormEvent, useEffect } from 'react';
 import { trackEvent } from '@/lib/analytics';
-import { subscribeToMailchimp } from '@/lib/mailchimp';
 
 const FORMSPREE_URL = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || '';
 const MAILCHIMP_URL = process.env.NEXT_PUBLIC_MAILCHIMP_URL || '';
@@ -75,16 +74,15 @@ export default function HomeContactSection() {
 
   const handleNewsletterSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!MAILCHIMP_URL) {
-      setNewsletterStatus('error');
-      setNewsletterError('Subscribe form not configured yet.');
-      return;
-    }
-
     setNewsletterStatus('loading');
     setNewsletterError('');
 
-    const result = await subscribeToMailchimp(MAILCHIMP_URL, newsletterEmail);
+    const res = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: newsletterEmail }),
+    });
+    const result = await res.json();
     if (result.success) {
       setNewsletterStatus('success');
       setNewsletterEmail('');
