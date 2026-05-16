@@ -104,7 +104,7 @@ export default function HomeContactSection() {
           </p>
           <div className="contact__direct">
             <span className="label">Direct line</span>
-            <a href="mailto:hello@hgmarketing.com">hello@hgmarketing.com</a>
+            <a href="mailto:hello@hgmrktng.com">hello@hgmrktng.com</a>
           </div>
         </div>
 

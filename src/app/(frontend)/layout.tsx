@@ -23,7 +23,7 @@ const inter = Inter({
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? '';
 if (!siteUrl.startsWith('http')) {
   console.warn(
-    '[layout.tsx] NEXT_PUBLIC_SITE_URL is not set — OG/canonical URLs will fall back to https://hgmarketing.com. ' +
+    '[layout.tsx] NEXT_PUBLIC_SITE_URL is not set — OG/canonical URLs will fall back to https://hgmrktng.com. ' +
     'Set this env var in Vercel for correct metadata.'
   );
 }
@@ -32,7 +32,7 @@ const description =
   'Boutique marketing consultancy for investment promotion agencies. We help IPAs sharpen their brand, build their narrative, and attract the investors they deserve.';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl.startsWith('http') ? siteUrl : 'https://hgmarketing.com'),
+  metadataBase: new URL(siteUrl.startsWith('http') ? siteUrl : 'https://hgmrktng.com'),
   title: {
     default: 'HGM · Hidden Gem Marketing',
     template: '%s | HGM · Hidden Gem Marketing',
@@ -59,10 +59,10 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'HGM · Hidden Gem Marketing',
-  url: 'https://hgmarketing.com',
-  logo: 'https://hgmarketing.com/favicon.svg',
+  url: 'https://hgmrktng.com',
+  logo: 'https://hgmrktng.com/favicon.svg',
   description,
-  email: 'hello@hgmarketing.com',
+  email: 'hello@hgmrktng.com',
   sameAs: [
     'https://www.linkedin.com/company/hgmarketing',
     'https://www.instagram.com/hgmarketing',

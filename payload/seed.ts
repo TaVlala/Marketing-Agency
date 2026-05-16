@@ -24,7 +24,7 @@ async function seed() {
     data: {
       firmName: 'Hidden Gem Marketing',
       tagline: 'Investment Promotion. Marketing. Redefined.',
-      contactEmail: 'hello@hgmarketing.com',
+      contactEmail: 'hello@hgmrktng.com',
       heroHeadline: 'Marketing that moves narratives.',
       heroSubheadline: 'We help Investment Promotion Agencies raise their profile, sharpen their brand, and attract the investors they deserve.',
       socialLinks: {
