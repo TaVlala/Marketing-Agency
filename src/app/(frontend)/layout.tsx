@@ -5,6 +5,7 @@ import Nav from '@/components/layout/Nav';
 import Footer from '@/components/layout/Footer';
 import CookieConsent from '@/components/layout/CookieConsent';
 import ClientEffects from '@/components/ClientEffects';
+import { Analytics } from '@vercel/analytics/react';
 
 const newsreader = Newsreader({
   subsets: ['latin'],
@@ -85,6 +86,7 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
         <Footer />
         <CookieConsent />
         <ClientEffects />
+        <Analytics />
       </body>
     </html>
   );
