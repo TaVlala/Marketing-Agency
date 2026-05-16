@@ -25,6 +25,7 @@ export function subscribeToMailchimp(
     const cbName = `_mc_${Date.now()}_${Math.random().toString(36).slice(2)}`;
 
     const url = new URL(mailchimpUrl.replace('/post?', '/post-json?'));
+    url.searchParams.delete('f_id');
     url.searchParams.set('EMAIL', email);
     url.searchParams.set('c', cbName);
 
